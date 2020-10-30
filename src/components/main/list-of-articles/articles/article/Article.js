@@ -16,12 +16,12 @@ const Article = ({image, name, description, price,handleClick}) => {
             <h1 className="text-gray-700 font-bold text-xl">${price}</h1>
             <button
               className="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded"
-              onClick={(event) => handleClick(
+              onClick={(event) => handleClick({
                 image,
                 name,
                 description,
                 price
-              )}
+              })}
             >Add to Card</button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const CartElement = ({name}) => {
+const CartElement = ({name, price}) => {
   return (
     <div className="py-2">
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden justify-center">
@@ -9,7 +9,7 @@ const CartElement = ({name}) => {
           <a href="#">
             <h1 className="text-gray-900 font-bold text-2xl">{name}</h1>
           </a>
-          <h1 className="text-gray-700 font-bold text-xl">${10}</h1>
+          <h1 className="text-gray-700 font-bold text-xl">${price}</h1>
         </div>
       </div> 
     </div>

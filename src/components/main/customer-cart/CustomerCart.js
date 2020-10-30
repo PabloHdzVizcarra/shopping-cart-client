@@ -4,7 +4,7 @@ import Cart from './cart/Cart'
 const CustomerCart = () => {
   return (
     <div>
-      <h2 className="text-2xl text-center">Articles</h2>
+      <h2 className="text-4xl text-center">Articles</h2>
       <Cart />
     </div>
   )

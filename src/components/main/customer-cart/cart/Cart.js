@@ -10,9 +10,10 @@ const Cart = () => {
 
   return (
     <div>
-      {articles.map(article => 
+      {articles.map(({name, price}) => 
         <CartElement 
-          name={article[1]}
+          name={name}
+          price={price}
           key={generateID()}
         />
       )}

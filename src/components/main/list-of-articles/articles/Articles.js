@@ -2,12 +2,12 @@ import React from 'react'
 import Article from './article/Article'
 import { generateID } from '../../../../modules/generator-id/generator-id'
 import { useArticlesDispatch } from '../../../../context/articles-context'
+import { createArticle } from './func-create-article/create-article'
 
 const Articles = props => {
 
   const dispatch = useArticlesDispatch()
   
-
   const articlesList = [
     {
       image: 'https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?cs=srgb&dl=pexels-daria-shevtsova-1260968.jpg&fm=jpg',
@@ -29,15 +29,23 @@ const Articles = props => {
     },
   ]
 
-  const handleClick = (...data) => {
-
-    console.log('click');
-    console.log(data);
+  const handleClick = async (data) => {
 
     dispatch({
       type: 'article',
-      payload: {...data}
+      payload: data
     })
+
+    await fetch('http://127.0.0.1:1820/api/add-product-cart', {
+      method: 'POST',
+      headers: {
+        'Content-type': "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(result => result.json())
+      .then(console.log)
+      .catch(console.log)
   }
 
   return (
@@ -57,6 +65,5 @@ const Articles = props => {
     </div>
   )
 }
-
 
 export default Articles

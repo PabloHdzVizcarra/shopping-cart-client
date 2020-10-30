@@ -4,7 +4,7 @@ export const articlesReducer = (state, action) => {
     case 'article': {
       return {
         ...state, 
-        articles: [{...action.payload}, ...state.articles]
+        articles: [action.payload, ...state.articles]
       }
     }      
   
