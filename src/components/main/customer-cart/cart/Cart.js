@@ -6,7 +6,6 @@ import CartElement from './cart-element/CartElement'
 const Cart = () => {
 
   const { articles } = useArticlesState()
-  console.log(articles)
 
   return (
     <div>

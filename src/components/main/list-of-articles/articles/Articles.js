@@ -3,6 +3,7 @@ import Article from './article/Article'
 import { generateID } from '../../../../modules/generator-id/generator-id'
 import { useArticlesDispatch } from '../../../../context/articles-context'
 import { createArticle } from './func-create-article/create-article'
+import AlertSuccess from '../../../atoms/alert-success/AlertSuccess'
 
 const Articles = props => {
 
@@ -30,6 +31,7 @@ const Articles = props => {
   ]
 
   const handleClick = async (data) => {
+    console.log('saving data');
 
     dispatch({
       type: 'article',
@@ -44,7 +46,17 @@ const Articles = props => {
       body: JSON.stringify(data)
     })
       .then(result => result.json())
-      .then(console.log)
+      .then(data => {
+        console.log(data.result)
+        dispatch({
+          type: 'alert',
+          payload: {
+            typeAlert: true,
+            message: "Articulo agregado al carrito con existo",
+            thereAlert: true,
+          }
+        })
+      })
       .catch(console.log)
   }
 

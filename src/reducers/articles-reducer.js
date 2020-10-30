@@ -6,7 +6,14 @@ export const articlesReducer = (state, action) => {
         ...state, 
         articles: [action.payload, ...state.articles]
       }
-    }      
+    }  
+    
+    case 'alert': {
+      return {
+        ...state,
+        alertArticles: {...action.payload}
+      }
+    }
   
     default:
       break

@@ -1,4 +1,5 @@
 import React from 'react'
+import Alert from './components/alert/Alert'
 import CustomerCart from './components/main/customer-cart/CustomerCart'
 import ListOfArticles from './components/main/list-of-articles/ListOfArticles'
 import NavBar from './components/navbar/NavBar'
@@ -13,6 +14,7 @@ const App = () => {
         <ArticlesProvider>
           <ListOfArticles />
           <CustomerCart />
+          <Alert />
         </ArticlesProvider>
 
       </div>

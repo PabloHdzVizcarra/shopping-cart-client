@@ -9,6 +9,11 @@ const ArticlesDispatchContext = React.createContext()
 function ArticlesProvider({ children }) {
   const [state, dispatch] = React.useReducer(articlesReducer, {
     articles: [],
+    alertArticles: {
+      typeAlert: false,
+      message: '',
+      thereAlert: false
+    }
   })
 
   return (
