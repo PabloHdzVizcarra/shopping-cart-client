@@ -1,6 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Article from './article/Article'
+import { generateID } from '../../../../modules/generator-id/generator-id'
 
 const Articles = props => {
 
@@ -25,6 +25,12 @@ const Articles = props => {
     },
   ]
 
+  const handleClick = (...data) => {
+
+    console.log('click');
+    console.log(data);
+  }
+
   return (
     <div>
       
@@ -34,15 +40,14 @@ const Articles = props => {
           image={image}
           description={description}
           price={price}
+          key={generateID()}
+          handleClick={handleClick}
         />
       )}
-      
+
     </div>
   )
 }
 
-Articles.propTypes = {
-
-}
 
 export default Articles

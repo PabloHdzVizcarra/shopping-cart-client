@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Article = ({image, name, description, price}) => {
+const Article = ({image, name, description, price,handleClick}) => {
   return (
     <div className="py-6">
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
@@ -14,7 +14,16 @@ const Article = ({image, name, description, price}) => {
           <p className="mt-2 text-gray-600 text-sm">{description}</p>
           <div className="flex item-center justify-between mt-3">
             <h1 className="text-gray-700 font-bold text-xl">${price}</h1>
-            <button className="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded">Add to Card</button>
+            <button
+              className="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded"
+              onClick={(event) => handleClick(
+                event,
+                image,
+                name,
+                description,
+                price
+              )}
+            >Add to Card</button>
           </div>
         </div>
       </div>
@@ -27,6 +36,7 @@ Article.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired,
 }
 
 export default Article
