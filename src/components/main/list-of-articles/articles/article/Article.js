@@ -17,7 +17,6 @@ const Article = ({image, name, description, price,handleClick}) => {
             <button
               className="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded"
               onClick={(event) => handleClick(
-                event,
                 image,
                 name,
                 description,

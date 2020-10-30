@@ -1,9 +1,10 @@
-export const articlesReducer = (state, action) =>  {
+export const articlesReducer = (state, action) => {
+  console.log(state, action);
   switch (action.type) {
     case 'article': {
       return {
         ...state, 
-        data: action.payload
+        articles: [{...action.payload}, ...state.articles]
       }
     }      
   

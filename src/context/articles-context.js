@@ -30,7 +30,7 @@ function useArticlesState() {
 }
 
 function useArticlesDispatch() {
-  const context = React.useContext(ArticlesStateContext)
+  const context = React.useContext(ArticlesDispatchContext)
   if (context === undefined) {
     throw new Error('useArticlesDispatch must be used within a ArticlesProvider')
   }

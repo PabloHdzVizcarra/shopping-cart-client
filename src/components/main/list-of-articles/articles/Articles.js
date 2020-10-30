@@ -1,8 +1,12 @@
 import React from 'react'
 import Article from './article/Article'
 import { generateID } from '../../../../modules/generator-id/generator-id'
+import { useArticlesDispatch } from '../../../../context/articles-context'
 
 const Articles = props => {
+
+  const dispatch = useArticlesDispatch()
+  
 
   const articlesList = [
     {
@@ -29,6 +33,11 @@ const Articles = props => {
 
     console.log('click');
     console.log(data);
+
+    dispatch({
+      type: 'article',
+      payload: {...data}
+    })
   }
 
   return (
