@@ -1,8 +1,7 @@
 import React from 'react'
 import { useArticlesState } from '../../../../context/articles-context'
 import { generateID } from '../../../../modules/generator-id/generator-id'
-import CartElement from './cart-element/CartElement'
-
+import CartElement from './Cart_Element/CartElement'
 const Cart = () => {
 
   const { articles } = useArticlesState()

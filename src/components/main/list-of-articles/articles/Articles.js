@@ -2,8 +2,6 @@ import React from 'react'
 import Article from './article/Article'
 import { generateID } from '../../../../modules/generator-id/generator-id'
 import { useArticlesDispatch } from '../../../../context/articles-context'
-import { createArticle } from './func-create-article/create-article'
-import AlertSuccess from '../../../atoms/alert-success/AlertSuccess'
 
 const Articles = props => {
 
@@ -52,7 +50,7 @@ const Articles = props => {
           type: 'alert',
           payload: {
             typeAlert: true,
-            message: "Articulo agregado al carrito con existo",
+            message: "Articulo agregado al carrito con exito",
             thereAlert: true,
           }
         })

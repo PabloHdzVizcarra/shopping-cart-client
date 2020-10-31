@@ -17,7 +17,7 @@ const AlertSuccess = ({message}) => {
 }
 
 AlertSuccess.propTypes = {
-
+  message: PropTypes.string.isRequired,
 }
 
 export default AlertSuccess

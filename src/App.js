@@ -1,6 +1,6 @@
 import React from 'react'
 import Alert from './components/alert/Alert'
-import CustomerCart from './components/main/customer-cart/CustomerCart'
+import CustomerCart from './components/main/customerCart/CustomerCart'
 import ListOfArticles from './components/main/list-of-articles/ListOfArticles'
 import NavBar from './components/navbar/NavBar'
 import { ArticlesProvider } from './context/articles-context'
