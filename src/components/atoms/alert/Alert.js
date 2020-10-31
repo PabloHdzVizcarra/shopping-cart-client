@@ -1,6 +1,6 @@
 import React from 'react'
-import { useArticlesState } from '../../context/articles-context'
-import AlertSuccess from '../atoms/alert-success/AlertSuccess';
+import { useArticlesState } from '../../../context/articles-context'
+import AlertSuccess from '../alert-success/AlertSuccess'
 
 const Alert = () => {
   

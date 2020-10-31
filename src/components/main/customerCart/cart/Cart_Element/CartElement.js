@@ -7,7 +7,7 @@ const CartElement = ({name, price}) => {
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden justify-center">
         <div className="w-2/3 p-2 flex justify-between">
           <a href="#">
-            <h1 className="text-gray-900 font-bold text-2xl">{name}</h1>
+            <h3 className="text-gray-900 font-bold text-1xl">{name}</h3>
           </a>
           <h1 className="text-gray-700 font-bold text-xl">${price}</h1>
         </div>

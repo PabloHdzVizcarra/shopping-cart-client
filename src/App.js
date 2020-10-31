@@ -1,5 +1,5 @@
 import React from 'react'
-import Alert from './components/alert/Alert'
+import Alert from './components/atoms/alert/Alert'
 import CustomerCart from './components/main/customerCart/CustomerCart'
 import ListOfArticles from './components/main/list-of-articles/ListOfArticles'
 import NavBar from './components/navbar/NavBar'
