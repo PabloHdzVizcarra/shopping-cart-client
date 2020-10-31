@@ -1,7 +1,27 @@
 import React from 'react'
 import ButtonDelete from '../../../../atoms/buttons/button_Delete/ButtonDelete'
 
-const CartElement = ({name, price}) => {
+const CartElement = ({ name, price, id }) => {
+
+  
+  const handleDelete = async () => {
+    console.log(`delete element + ${id}`)
+
+    const response = await fetch(
+      'http://127.0.0.1:1820/api/delete-product',
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: JSON.stringify({id})
+      }
+    )
+    const json = await response.json()
+    console.log(json)
+  }
+
   return (
     <div className="py-2">
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden justify-around items-center">
@@ -13,7 +33,9 @@ const CartElement = ({name, price}) => {
           </a>
         <div className="w-2/3 p-2 flex justify-between">
           <h1 className="text-gray-700 font-bold text-xl ml-4">${price}</h1>
-          <ButtonDelete />
+          <ButtonDelete 
+            handleDelete={handleDelete}
+          />
         </div>
       </div> 
     </div>

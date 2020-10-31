@@ -19,11 +19,12 @@ const Cart = ({data, loading}) => {
     <div>
     
       {
-        articles.map(({ name, price }) => 
+        articles.map(({ name, price, _id }) => 
             <CartElement 
               name={name}
               price={price}
               key={generateID()}
+              id={_id}
             />
         )
       }
