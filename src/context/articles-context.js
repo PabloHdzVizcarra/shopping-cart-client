@@ -1,10 +1,8 @@
-import * as React from 'react'
+import React from 'react'
 import { articlesReducer } from '../reducers/articles-reducer'
 
 const ArticlesStateContext = React.createContext()
 const ArticlesDispatchContext = React.createContext()
-
-
 
 function ArticlesProvider({ children }) {
   const [state, dispatch] = React.useReducer(articlesReducer, {
@@ -43,8 +41,13 @@ function useArticlesDispatch() {
   return context
 }
 
+function useArticles() {
+  return [useArticlesState(), useArticlesDispatch()]
+}
+
 export {
   ArticlesProvider,
   useArticlesState,
   useArticlesDispatch,
+  useArticles
 }

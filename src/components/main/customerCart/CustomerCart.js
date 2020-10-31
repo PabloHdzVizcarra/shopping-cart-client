@@ -4,12 +4,16 @@ import useFetch from '../../../hooks/use_Fetch/useFetch'
 import Cart from './cart/Cart'
 
 const CustomerCart = () => {
+
   const dispatch = useArticlesDispatch()
 
   const { response, error, loading } = useFetch(
     'http://127.0.0.1:1820/api/all-products-cart',
     {},
+    dispatch
   )
+
+
 
   return (
     <div>
@@ -17,6 +21,7 @@ const CustomerCart = () => {
       <Cart 
         data={response}
         loading={loading}
+        error={error}
       />
     </div>
   )

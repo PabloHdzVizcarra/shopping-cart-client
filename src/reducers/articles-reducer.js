@@ -13,6 +13,13 @@ export const articlesReducer = (state, action) => {
         alertArticles: {...action.payload}
       }
     }
+      
+    case 'setAllData': {
+      return {
+        ...state,
+        articles: [...action.payload]
+      }
+    }
   
     default:
       break

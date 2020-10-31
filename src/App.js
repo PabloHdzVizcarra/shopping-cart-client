@@ -12,9 +12,11 @@ const App = () => {
       <div className='xl:px-32 my-4 grid grid-cols-2 gap-2'>
         
         <ArticlesProvider>
+          
           <ListOfArticles />
           <CustomerCart />
           <Alert />
+
         </ArticlesProvider>
 
       </div>

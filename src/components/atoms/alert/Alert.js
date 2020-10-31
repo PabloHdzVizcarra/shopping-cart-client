@@ -4,7 +4,7 @@ import AlertSuccess from '../alert-success/AlertSuccess'
 
 const Alert = () => {
   
-  const {alertArticles} = useArticlesState();
+  const { alertArticles } = useArticlesState()
   const { thereAlert, message } = alertArticles
 
   return (
