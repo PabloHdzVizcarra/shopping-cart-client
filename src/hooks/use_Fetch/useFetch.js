@@ -19,6 +19,8 @@ const useFetch = (url, options, dispatch) => {
             type: 'setAllData',
             payload: json
           })
+
+          return null
         }
         
       } catch (error) {

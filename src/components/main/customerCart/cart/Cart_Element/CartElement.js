@@ -9,8 +9,6 @@ const CartElement = ({ name, price, id }) => {
   const dispatch = useArticlesDispatch()
   
   const handleDelete = async () => {
-    console.log("click")
-
     try {
       const response = await fetch(
         "http://127.0.0.1:1820/api/delete-product",
@@ -23,13 +21,12 @@ const CartElement = ({ name, price, id }) => {
         }
       )
       const data = await response.json()
-
       dispatch(
         actionDeleteElementbyId(data.idItemDeleted)
       )
 
     } catch (error) {
-      console.log(error) 
+      return null
     }  
   }
 

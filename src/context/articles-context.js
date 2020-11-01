@@ -1,8 +1,8 @@
 import React from 'react'
 import { articlesReducer } from '../reducers/articles-reducer'
 
-const ArticlesStateContext = React.createContext()
-const ArticlesDispatchContext = React.createContext()
+export const ArticlesStateContext = React.createContext()
+export const ArticlesDispatchContext = React.createContext()
 
 function ArticlesProvider({ children }) {
   const [state, dispatch] = React.useReducer(articlesReducer, {

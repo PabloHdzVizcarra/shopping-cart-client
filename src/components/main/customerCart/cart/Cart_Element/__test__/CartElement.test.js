@@ -1,10 +1,13 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import CartElement from '../CartElement'
 import { ArticlesProvider } from '../../../../../../context/articles-context'
 
 describe('Test in CartElement component', () => {
+  const providerProps = {
+    dispatch: jest.fn()
+  }
 
   const customRender = (ui, { providerProps, ...renderOptions }) => {
     return render(
@@ -13,15 +16,11 @@ describe('Test in CartElement component', () => {
     )
   }
   
+  beforeEach(() => {
+    fetch.resetMocks();
+  })
+  
   test('should render correctly with all props', () => {
-    const providerProps = {
-      message: {
-
-      },
-      articles: [
-
-      ]
-    }
     customRender(<CartElement 
       name="Pizza"
       price={215}
@@ -32,5 +31,6 @@ describe('Test in CartElement component', () => {
     expect(screen.getByRole('button')).toBeInTheDocument()
     expect(screen.getByRole('link')).toBeInTheDocument()
   })
+  
   
 })

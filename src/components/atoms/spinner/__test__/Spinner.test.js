@@ -9,7 +9,7 @@ describe('Test in Spinner component', () => {
 
     render(<Spinner />)
 
-    expect(screen.getByTestId('spinner-test')).toBeInTheDocument()
+    expect(screen.getByTestId('Spinner')).toBeInTheDocument()
   })
   
 })
