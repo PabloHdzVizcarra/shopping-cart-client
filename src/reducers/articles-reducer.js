@@ -20,6 +20,14 @@ export const articlesReducer = (state, action) => {
         articles: [...action.payload]
       }
     }
+      
+    case 'deleteElement': {
+      return {
+        ...state,
+        articles: state.articles
+          .filter(article => article._id !== action.payload)
+      }
+    }
   
     default:
       break

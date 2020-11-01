@@ -1,8 +1,10 @@
 import React from 'react'
+import { useArticlesDispatch } from '../../../../../context/articles-context'
 import ButtonDelete from '../../../../atoms/buttons/button_Delete/ButtonDelete'
 
 const CartElement = ({ name, price, id }) => {
-
+  const dispatch = useArticlesDispatch()
+  
   
   const handleDelete = async () => {
     console.log(`delete element + ${id}`)
@@ -13,13 +15,18 @@ const CartElement = ({ name, price, id }) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
-        // "Content-Type": "application/x-www-form-urlencoded",
         },
         body: JSON.stringify({id})
       }
     )
+
     const json = await response.json()
-    console.log(json)
+    console.log(json) 
+
+    dispatch({
+      type: 'deleteElement',
+      payload: json.idItemDeleted
+    })
   }
 
   return (
@@ -43,6 +50,3 @@ const CartElement = ({ name, price, id }) => {
 }
 
 export default CartElement
-
-
-
