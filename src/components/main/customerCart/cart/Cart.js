@@ -1,12 +1,9 @@
 import React from 'react'
-import { useArticlesState } from '../../../../context/articles-context'
 import { generateID } from '../../../../modules/generator-id/generator-id'
 import Spinner from '../../../atoms/spinner/Spinner'
 import CartElement from './Cart_Element/CartElement'
 
-const Cart = ({data, loading}) => {
-
-  const { articles } = useArticlesState()
+const Cart = ({ data, loading }) => {
   
   if (loading) {
     return (
@@ -15,13 +12,12 @@ const Cart = ({data, loading}) => {
   }
 
   return (
-
     <div
       className="flex flex-col items-end"
+      data-testid="Cart"
     >
-    
       {
-        articles.map(({ name, price, _id }) => 
+        data.map(({ name, price, _id }) => 
             <CartElement 
               name={name}
               price={price}
@@ -30,7 +26,6 @@ const Cart = ({data, loading}) => {
             />
         )
       }
-
     </div>
   )
 }

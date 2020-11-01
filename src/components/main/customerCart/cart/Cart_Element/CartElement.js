@@ -2,11 +2,14 @@ import React from 'react'
 import { actionDeleteElementbyId } from '../../../../../actions/articles-actions'
 import { useArticlesDispatch } from '../../../../../context/articles-context'
 import ButtonDelete from '../../../../atoms/buttons/button_Delete/ButtonDelete'
+import PropTypes from 'prop-types'
+
 
 const CartElement = ({ name, price, id }) => {
   const dispatch = useArticlesDispatch()
   
   const handleDelete = async () => {
+    console.log("click")
 
     try {
       const response = await fetch(
@@ -31,7 +34,10 @@ const CartElement = ({ name, price, id }) => {
   }
 
   return (
-    <div className="py-2 w-4/6">
+    <div
+      className="py-2 w-4/6"
+      data-testid='CartElement'
+    >
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden justify-around items-center">
         <a href="https://google.com" className="w-1/3">
           <h3 className="text-gray-900 font-bold text-1xl text-center">
@@ -45,6 +51,12 @@ const CartElement = ({ name, price, id }) => {
       </div>
     </div>
   )
+}
+
+CartElement.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 }
 
 export default CartElement
