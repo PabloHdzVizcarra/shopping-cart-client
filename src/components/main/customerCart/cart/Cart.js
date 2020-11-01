@@ -16,7 +16,9 @@ const Cart = ({data, loading}) => {
 
   return (
 
-    <div>
+    <div
+      className="flex flex-col items-end"
+    >
     
       {
         articles.map(({ name, price, _id }) => 

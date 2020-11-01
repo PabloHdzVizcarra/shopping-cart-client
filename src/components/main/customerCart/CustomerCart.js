@@ -13,11 +13,11 @@ const CustomerCart = () => {
     dispatch
   )
 
-
-
   return (
-    <div>
-      <h2 className="text-4xl text-center">Articles</h2>
+    <div
+      className="flex flex-col"
+    >
+      <h2 className="text-4xl text-right mr-20">Articulos</h2>
       <Cart 
         data={response}
         loading={loading}
