@@ -6,21 +6,28 @@ import ButtonDelete from '../../../../atoms/buttons/button_Delete/ButtonDelete'
 const CartElement = ({ name, price, id }) => {
   const dispatch = useArticlesDispatch()
   
-  
   const handleDelete = async () => {
-    const response = await fetch(
-      'http://127.0.0.1:1820/api/delete-product',
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
-        body: JSON.stringify({id})
-      }
-    )
-    const json = await response.json()
 
-    dispatch(actionDeleteElementbyId(json.idItemDeleted))
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:1820/api/delete-product",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
+          body: JSON.stringify({id})
+        }
+      )
+      const data = await response.json()
+
+      dispatch(
+        actionDeleteElementbyId(data.idItemDeleted)
+      )
+
+    } catch (error) {
+      console.log(error) 
+    }  
   }
 
   return (
@@ -37,7 +44,7 @@ const CartElement = ({ name, price, id }) => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default CartElement
