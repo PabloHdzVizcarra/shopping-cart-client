@@ -1,4 +1,4 @@
-export const articlesReducer = (state, action) => {
+export const articlesReducer = (state = {}, action) => {
   switch (action.type) {
     case 'article': {
       return {
@@ -30,6 +30,6 @@ export const articlesReducer = (state, action) => {
     }
   
     default:
-      break
+      throw new Error('Invalid Reducer Action')
   }
 }

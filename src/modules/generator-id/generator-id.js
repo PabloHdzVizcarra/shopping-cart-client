@@ -14,7 +14,6 @@ export function generateLetters(firstValue, secondValue, length = 8) {
 
 }
 
-
 export const generateID = (lenthg = 8) => {
   const data = generateLetters('a', 'z', lenthg)
   const data2 = generateLetters('A', 'Z', lenthg)
