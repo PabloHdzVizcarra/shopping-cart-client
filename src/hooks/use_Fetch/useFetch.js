@@ -43,7 +43,7 @@ const useFetch = (url, options, dispatch) => {
     //eslint-disable-next-line
   }, [])
 
-  return {response, error, loading}
+  return [response, error, loading]
 }
 
 export default useFetch

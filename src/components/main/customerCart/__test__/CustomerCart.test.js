@@ -4,8 +4,6 @@ import '@testing-library/jest-dom'
 import CustomerCart from '../CustomerCart'
 import { ArticlesProvider, ArticlesStateContext } from '../../../../context/articles-context'
 import * as reducer from '../../../../reducers/articles-reducer'
-import { act } from 'react-dom/test-utils'
-
 
 describe('Test in ButtonDelete component', () => {
 
@@ -150,7 +148,5 @@ describe('Test in ButtonDelete component', () => {
     const CartElements = await screen.findAllByTestId(/CartElement/)
     expect(CartElements.length).toBe(articles.length)
   })
-  
-  
   
 })
