@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 import App from '../App'
 import LoginScreen from '../components/loginScreen/LoginScreen'
+import { AuthProvider } from '../context/auth-context'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 
@@ -13,22 +14,24 @@ const AppRouter = () => {
 
   return (
     <Router>
-      <div>
-        <Switch>
-          <PublicRoute 
-            exact
-            path="/login"
-            component={LoginScreen}
-            isAuthenticated={user}
-          />
+      <AuthProvider>
+        <div>
+          <Switch>
+            <PublicRoute 
+              exact
+              path="/login"
+              component={LoginScreen}
+              isAuthenticated={user}
+            />
 
-          <PrivateRoute 
-            path="/"
-            component={App}
-            isAuthenticated={user}
-          />
-        </Switch>
-      </div>
+            <PrivateRoute 
+              path="/"
+              component={App}
+              isAuthenticated={user}
+            />
+          </Switch>
+        </div>
+      </AuthProvider>
     </Router>
   )
 }
