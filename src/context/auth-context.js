@@ -3,7 +3,13 @@ import React from 'react'
 export const AuthStateContext = React.createContext()
 
 function AuthProvider({ children }) {
-  const [dataUser, setDataUser] = React.useState({})
+  const [dataUser, setDataUser] = React.useState({
+    isAuthenticated: false,
+    data: {
+      name: '',
+      email: ''
+    }
+  })
 
   function setDataUserFromDB(data) {
     console.log(setDataUser)

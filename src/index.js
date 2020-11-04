@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './router/AppRouter';
+import AppContext from './AppContext';
 import './tailwind.output.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppRouter />
+    <AppContext />
   </React.StrictMode>,
   document.getElementById('root')
 );
