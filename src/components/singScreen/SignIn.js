@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useForm } from '../../hooks/use_Fetch/useForm'
+import { useForm } from '../../hooks/useForm/useForm'
 import Input from '../loginScreen/input/Input'
 import InputSubmit from '../loginScreen/inputSubmit/InputSubmit'
 

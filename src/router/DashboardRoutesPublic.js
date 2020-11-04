@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom'
 import LoginScreen from '../components/loginScreen/LoginScreen'
-import SignIn from '../components/sing-in/SignIn'
+import SignIn from '../components/singScreen/SignIn'
 
 const DashboardRoutesPublic = (props) => {
   const { url } = useRouteMatch()

@@ -1,47 +1,57 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "../../hooks/use_Fetch/useForm";
+import { useForm } from "../../hooks/useForm/useForm";
+import ErrorAlert from "./alerts/error-alert/ErrorAlert";
 import Input from "./input/Input";
 import InputSubmit from "./inputSubmit/InputSubmit";
+import { validateFormFields } from "./validate-form-fields/validate-form--fields";
 
 const LoginScreen = () => {
-  const [{
-    email,
-    password
-  }, handleInputChange, reset] = useForm({
-    email: '',
-    password: ''
-  })
+  const [alerts, setAlerts] = React.useState({
+    error: false,
+    message: "",
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(email, password)
+  const [{ email, password }, handleInputChange, reset] = useForm({
+    email: "",
+    password: "",
+  });
 
-    reset()
-  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { error, message } = validateFormFields(email, password);
+    if (error) {
+      setAlerts({
+        error: true,
+        message,
+      })
+      return
+    }
+
+    setAlerts({
+      error: false,
+      message: "",
+    })
+    reset();
+  
+  };
 
   return (
     <div className="flex w-full justify-center min-h-screen">
       <div className="lg:flex grid md:w-8/12 items-center">
         <img
           src="https://images.unsplash.com/photo-1514782831304-632d84503f6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
-          alt="Tu lista" 
+          alt="Tu lista"
           className="lg:w-6/12 w-12/12 rounded"
         />
-        <div
-          className="w-full py-10"
-        >
-          <h2
-            className="text-4xl text-center mb-4"
-          >
-            Inicia Sesion
-          </h2>
+        <div className="w-full py-10">
+          {alerts.error ? <ErrorAlert message={alerts.message} /> : null}
 
-          <form
-            onSubmit={handleSubmit}
-            className="mt-20 px-6"
-          >
-            <Input 
+          <h2 className="text-4xl text-center mb-4">Inicia Sesion</h2>
+
+          <form onSubmit={handleSubmit} className="mt-20 px-6">
+            <Input
               labelText="Email"
               inputType="text"
               inputName="email"
@@ -49,7 +59,7 @@ const LoginScreen = () => {
               inputValue={email}
             />
 
-            <Input 
+            <Input
               labelText="Password"
               inputType="password"
               inputName="password"
@@ -57,11 +67,7 @@ const LoginScreen = () => {
               inputValue={password}
             />
 
-            <InputSubmit 
-              inputType="submit"
-              inputValue="Login"
-            />
-
+            <InputSubmit inputType="submit" inputValue="Login" />
           </form>
 
           <div className="px-6 flex justify-center mt-4">
@@ -69,13 +75,14 @@ const LoginScreen = () => {
             <Link
               to="/login/sign-in"
               className="text-blue-600 hover:text-blue-900 ml-1"
-            >aqui.</Link> 
+            >
+              aqui.
+            </Link>
           </div>
-
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default LoginScreen;
