@@ -1,9 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useForm } from '../../hooks/use_Fetch/useForm'
 import Input from '../loginScreen/input/Input'
 import InputSubmit from '../loginScreen/inputSubmit/InputSubmit'
 
 const SignIn = () => {
+
+  const [{
+    username,
+    email,
+    password,
+    password2
+  }, handleInputChange, reset] = useForm({
+    username: '',
+    email: '',
+    password: '',
+    password2: '',
+  })
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(username, password, email, password2)
+    reset()
+  }
+
   return (
     <div className="flex w-full justify-center min-h-screen">
       <div className="lg:flex grid md:w-8/12 items-center">
@@ -23,25 +43,38 @@ const SignIn = () => {
 
           <form
             className="mt-20 px-6"
+            onSubmit={handleSubmit}
           >
             <Input 
               labelText="Nombre de usuario"
               inputType="text"
+              inputName="username"
+              handleInputChange={handleInputChange}
+              inputValue={username}
             />
 
             <Input 
               labelText="Email"
               inputType="text"
+              inputName="email"
+              handleInputChange={handleInputChange}
+              inputValue={email}
             />
 
             <Input 
               labelText="Password"
               inputType="password"
+              inputName="password"
+              handleInputChange={handleInputChange}
+              inputValue={password}
             />
 
             <Input 
               labelText="Repite tu password"
               inputType="password"
+              inputName="password2"
+              handleInputChange={handleInputChange}
+              inputValue={password2}
             />
 
             <InputSubmit 

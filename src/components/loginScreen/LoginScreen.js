@@ -5,19 +5,19 @@ import Input from "./input/Input";
 import InputSubmit from "./inputSubmit/InputSubmit";
 
 const LoginScreen = () => {
-  const [formValues, handleInputChange, reset] = useForm({
+  const [{
+    email,
+    password
+  }, handleInputChange, reset] = useForm({
     email: '',
     password: ''
   })
 
-  const { email, password } = formValues
-
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(formValues)
+    console.log(email, password)
+
     reset()
-    
-    console.log('submit')
   }
 
   return (
