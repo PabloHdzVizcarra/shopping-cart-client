@@ -1,10 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm/useForm'
+import ErrorAlert from '../loginScreen/alerts/error-alert/ErrorAlert'
 import Input from '../loginScreen/input/Input'
 import InputSubmit from '../loginScreen/inputSubmit/InputSubmit'
+import { validateFormFieldsRegister } from '../loginScreen/validate-form-fields/validate-form-fields-regster'
 
 const SignIn = () => {
+  const [alerts, setAlerts] = React.useState({
+    error: false,
+    message: "",
+  })
 
   const [{
     username,
@@ -18,9 +24,38 @@ const SignIn = () => {
     password2: '',
   })
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(username, password, email, password2)
+    const { error, message } = validateFormFieldsRegister(username, email, password, password2)
+    
+    if (error) {
+      setAlerts({
+        error: true,
+        message
+      })
+      return
+    }
+
+    setAlerts({
+      error: false,
+      message: ''
+    })
+
+    const resp = await fetch('http://127.0.0.1:1820/api/auth/register-user', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        username
+      })
+    })
+
+    const data = await resp.json()
+    console.log(data)
+
     reset()
   }
 
@@ -35,6 +70,7 @@ const SignIn = () => {
         <div
           className="w-full py-10"
         >
+          {alerts.error ? <ErrorAlert message={alerts.message} /> : null}
           <h2
             className="text-4xl text-center mb-4"
           >

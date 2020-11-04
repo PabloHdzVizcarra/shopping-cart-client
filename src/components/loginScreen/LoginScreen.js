@@ -4,7 +4,7 @@ import { useForm } from "../../hooks/useForm/useForm";
 import ErrorAlert from "./alerts/error-alert/ErrorAlert";
 import Input from "./input/Input";
 import InputSubmit from "./inputSubmit/InputSubmit";
-import { validateFormFields } from "./validate-form-fields/validate-form--fields";
+import { validateFormFields } from "./validate-form-fields/validate-form-fields-login";
 
 const LoginScreen = () => {
   const [alerts, setAlerts] = React.useState({
