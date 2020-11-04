@@ -7,7 +7,7 @@ function InputSubmit({inputType, inputValue}) {
       <input
         type={inputType}
         value={inputValue}
-        className="cursor-pointer py-2 w-full mt-4 rounded-md bg-teal-500 hover:bg-teal-600 focus:shadow-outline focus:outline-none shadow-lg transition duration-300 ease-in-out"
+        className="text-white text-lg font-bold  cursor-pointer py-2 w-full mt-4 rounded-md bg-teal-500 hover:bg-teal-600 focus:shadow-outline focus:outline-none shadow-lg transition duration-300 ease-in-out"
       />
     </div>
   )
