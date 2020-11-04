@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-function Input({ labelText, inputType }) {
+function Input({ labelText, inputType, inputName, handleInputChange, inputValue }) {
   return (
     <div
       className="p-2 grid"
@@ -11,6 +11,9 @@ function Input({ labelText, inputType }) {
         className="text-xl text-green-900"
       >{labelText}</label>
       <input
+        value={inputValue}
+        onChange={handleInputChange}
+        name={inputName}
         type={inputType}
         className="py-2 bg-gray-300 rounded-lg ml-4 leading-tight text-teal-700 focus:outline-none px-2"
       />

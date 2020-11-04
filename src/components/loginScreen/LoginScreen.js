@@ -1,9 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "../../hooks/use_Fetch/useForm";
 import Input from "./input/Input";
 import InputSubmit from "./inputSubmit/InputSubmit";
 
 const LoginScreen = () => {
+  const [formValues, handleInputChange, reset] = useForm({
+    email: '',
+    password: ''
+  })
+
+  const { email, password } = formValues
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(formValues)
+    reset()
+    
+    console.log('submit')
+  }
+
   return (
     <div className="flex w-full justify-center min-h-screen">
       <div className="lg:flex grid md:w-8/12 items-center">
@@ -22,16 +38,23 @@ const LoginScreen = () => {
           </h2>
 
           <form
+            onSubmit={handleSubmit}
             className="mt-20 px-6"
           >
             <Input 
               labelText="Email"
               inputType="text"
+              inputName="email"
+              handleInputChange={handleInputChange}
+              inputValue={email}
             />
 
             <Input 
               labelText="Password"
               inputType="password"
+              inputName="password"
+              handleInputChange={handleInputChange}
+              inputValue={password}
             />
 
             <InputSubmit 
