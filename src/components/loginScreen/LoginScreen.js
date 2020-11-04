@@ -1,35 +1,51 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Input from "./input/Input";
+import InputSubmit from "./inputSubmit/InputSubmit";
 
 const LoginScreen = () => {
   return (
-    <div className="flex w-screen justify-center min-h-screen">
-      <div className="flex w-6/12 items-center">
+    <div className="flex w-full justify-center min-h-screen">
+      <div className="lg:flex grid md:w-8/12 items-center">
         <img
           src="https://images.unsplash.com/photo-1514782831304-632d84503f6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
           alt="Tu lista" 
-          className="w-6/12 rounded"
-          style={{
-            height: "60%"
-          }}
+          className="lg:w-6/12 w-12/12 rounded"
         />
         <div
-          style={{
-            height: "60%"
-          }}
+          className="w-full py-10"
         >
-          <form>
-            <div>
-              <label>Email</label>
-              <input type="text" />
-            </div>
-            <div>
-              <label>Password</label>
-              <input type="text" />
-            </div>
-            <div>
-              <input type="submit" value="Login" />
-            </div>
+          <h2
+            className="text-4xl text-center mb-4"
+          >
+            Inicia Sesion
+          </h2>
+
+          <form
+            className="mt-20 px-6"
+          >
+            <Input 
+              labelText="Email"
+              inputType="text"
+            />
+
+            <Input 
+              labelText="Password"
+              inputType="password"
+            />
+
+            <InputSubmit 
+              inputType="submit"
+              inputValue="Login"
+            />
+
           </form>
+
+          <div className="px-6">
+            <p>No tienes cuenta? puedes crear una pulsando</p>
+            <Link to="/sing-in">aqui.</Link> 
+          </div>
+
         </div>
       </div>
     </div>
