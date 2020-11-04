@@ -33,8 +33,22 @@ const LoginScreen = () => {
       error: false,
       message: "",
     })
-    reset();
-  
+    
+    const resp = await fetch('http://127.0.0.1:1820/api/auth/login-user', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    })
+
+    const data = await resp.json()
+    reset()
+
+    console.log(data)
   };
 
   return (
