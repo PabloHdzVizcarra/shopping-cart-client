@@ -1,11 +1,12 @@
 import React from 'react'
 import {
   BrowserRouter as Router,
+  Redirect,
   Switch
 } from 'react-router-dom'
 import App from '../App'
-import LoginScreen from '../components/loginScreen/LoginScreen'
 import { AuthProvider } from '../context/auth-context'
+import DashboardRoutesPublic from './DashboardRoutesPublic'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 
@@ -17,18 +18,21 @@ const AppRouter = () => {
       <AuthProvider>
         <div>
           <Switch>
-            <PublicRoute 
-              exact
+            <PublicRoute
               path="/login"
-              component={LoginScreen}
+              component={DashboardRoutesPublic}
               isAuthenticated={user}
             />
 
-            <PrivateRoute 
+            <PrivateRoute
+              exact
               path="/"
               component={App}
               isAuthenticated={user}
             />
+  
+
+            <Redirect to="/login"/>
           </Switch>
         </div>
       </AuthProvider>

@@ -6,7 +6,7 @@ function AuthProvider({ children }) {
   const [dataUser, setDataUser] = React.useState({})
 
   function setDataUserFromDB(data) {
-
+    console.log(setDataUser)
   }
 
   return (

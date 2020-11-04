@@ -41,15 +41,18 @@ const LoginScreen = () => {
 
           </form>
 
-          <div className="px-6">
+          <div className="px-6 flex justify-center mt-4">
             <p>No tienes cuenta? puedes crear una pulsando</p>
-            <Link to="/sing-in">aqui.</Link> 
+            <Link
+              to="/login/sign-in"
+              className="text-blue-600 hover:text-blue-900 ml-1"
+            >aqui.</Link> 
           </div>
 
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default LoginScreen;
