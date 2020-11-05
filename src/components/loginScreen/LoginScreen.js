@@ -56,6 +56,7 @@ const LoginScreen = () => {
     }
 
     reset()
+    localStorage.setItem("token", data.token)
     setDataUserFromDB(data)
 
   }

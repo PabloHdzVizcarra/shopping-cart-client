@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm/useForm'
 import ErrorAlert from '../loginScreen/alerts/error-alert/ErrorAlert'
 import Input from '../loginScreen/input/Input'
@@ -7,6 +7,7 @@ import InputSubmit from '../loginScreen/inputSubmit/InputSubmit'
 import { validateFormFieldsRegister } from '../loginScreen/validate-form-fields/validate-form-fields-regster'
 
 const SignIn = () => {
+  const history = useHistory()
   const [alerts, setAlerts] = React.useState({
     error: false,
     message: "",
@@ -41,7 +42,7 @@ const SignIn = () => {
       message: ''
     })
 
-    const resp = await fetch('http://127.0.0.1:1820/api/auth/register-user', {
+    await fetch('http://127.0.0.1:1820/api/auth/register-user', {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -53,10 +54,9 @@ const SignIn = () => {
       })
     })
 
-    const data = await resp.json()
-    console.log(data)
-
-    // reset()
+    reset()
+    history.push('/login')
+    
   }
 
   return (

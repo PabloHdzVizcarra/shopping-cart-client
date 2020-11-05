@@ -11,8 +11,32 @@ import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 
 const AppRouter = () => {
-  const { dataUser } = useContext(AuthStateContext)
-  console.log(dataUser)
+  const { dataUser, setDataUserFromDB } = useContext(AuthStateContext)
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (!token) return
+    setDataUserFromDB({
+      dataUser: {
+        username: "thiago",
+        email: "test@tes.com"
+      },
+      isAuthenticated: true
+
+    })
+
+    fetch(`http://127.0.0.1:1820/api/auth/verify-user/${token}`)
+      .then(resp => resp.json())
+      .then(data => {
+        setDataUserFromDB(data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+    console.log(token)
+  }, [])
+
 
   return (
     <Router>
