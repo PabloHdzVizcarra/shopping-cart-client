@@ -4,19 +4,21 @@ import { useForm } from "../../hooks/useForm/useForm";
 import ErrorAlert from "./alerts/error-alert/ErrorAlert";
 import Input from "./input/Input";
 import InputSubmit from "./inputSubmit/InputSubmit";
+import { AuthStateContext } from '../../context/auth-context'
 import { validateFormFields } from "./validate-form-fields/validate-form-fields-login";
 
 const LoginScreen = () => {
   const [alerts, setAlerts] = React.useState({
     error: false,
     message: "",
-  });
+  })
 
+  const { setDataUserFromDB } = React.useContext(AuthStateContext)
   const [{ email, password }, handleInputChange, reset] = useForm({
     email: "",
-    password: "",
+    password: "",    
   });
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -34,18 +36,29 @@ const LoginScreen = () => {
       message: "",
     })
     
-    const resp = await fetch(`http://127.0.0.1:1820/api/auth/login-user/:${email}`, {
-      method: "GET",
+    const resp = await fetch(`http://127.0.0.1:1820/api/auth/login-user`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
-      }
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
     })
 
     const data = await resp.json()
-    reset()
+    if (data?.message) {
+      return setAlerts({
+        error: true,
+        message: "Hubo un error"
+      })
+    }
 
-    console.log(data)
-  };
+    reset()
+    setDataUserFromDB(data)
+
+  }
 
   return (
     <div className="flex w-full justify-center min-h-screen">

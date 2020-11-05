@@ -6,13 +6,19 @@ function AuthProvider({ children }) {
   const [dataUser, setDataUser] = React.useState({
     isAuthenticated: false,
     data: {
-      name: '',
+      username: '',
       email: ''
     }
   })
 
   function setDataUserFromDB(data) {
-    console.log(setDataUser)
+    setDataUser({
+      isAuthenticated: true,
+      data: {
+        username: data.dataUser.username,
+        email: data.dataUser.email,
+      }
+    })
   }
 
   return (

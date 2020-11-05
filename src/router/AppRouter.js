@@ -11,7 +11,7 @@ import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 
 const AppRouter = () => {
-  const {dataUser} = useContext(AuthStateContext)
+  const { dataUser } = useContext(AuthStateContext)
   console.log(dataUser)
 
   return (

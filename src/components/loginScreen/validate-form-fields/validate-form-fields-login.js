@@ -7,7 +7,6 @@ export const validateFormFields = (email, password) => {
     error: false,
     message: ''
   }
-  console.log(email, password)
 
   if (isEmpty(email)) {
     errors.error = true
