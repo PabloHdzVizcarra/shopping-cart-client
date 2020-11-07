@@ -48,18 +48,17 @@ const LoginScreen = () => {
     })
 
     const data = await resp.json()
+
     if (data?.message) {
       return setAlerts({
         error: true,
-        message: "Hubo un error"
+        message: "La password que ingresaste es invalida"
       })
     }
+    console.log(data)
 
     reset()
-    return null
-    localStorage.setItem("token", data.token)
     setDataUserFromDB(data)
-
   }
 
   return (
