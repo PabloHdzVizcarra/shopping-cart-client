@@ -36,7 +36,7 @@ const LoginScreen = () => {
       message: "",
     })
     
-    const resp = await fetch(`http://127.0.0.1:1820/api/auth/login-user`, {
+    const resp = await fetch("api/auth/login-user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -56,6 +56,7 @@ const LoginScreen = () => {
     }
 
     reset()
+    return null
     localStorage.setItem("token", data.token)
     setDataUserFromDB(data)
 

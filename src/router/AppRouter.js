@@ -23,7 +23,6 @@ const AppRouter = () => {
     }
 
     setLoadingToken(true)
-    console.log('get token')
 
     fetch(`http://127.0.0.1:1820/api/auth/verify-user/${token}`)
       .then(resp => resp.json())
