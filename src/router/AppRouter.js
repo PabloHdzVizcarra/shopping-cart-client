@@ -15,25 +15,21 @@ const AppRouter = () => {
   const [loadingToken, setLoadingToken] = React.useState(false)
   const { dataUser, setDataUserFromDB } = useContext(AuthStateContext)
 
-  const token = localStorage.getItem('token')
-
   React.useEffect(() => {
-    if (!token) {
-      return
-    }
 
     setLoadingToken(true)
 
-    fetch(`http://127.0.0.1:1820/api/auth/verify-user/${token}`)
+    fetch('api/auth/verify-user')
       .then(resp => resp.json())
       .then(data => {
+        console.log(data)
 
         if (data.message) {
           console.log(data.message)
           setLoadingToken(false)
-          return
+          return null
         }
-        setDataUserFromDB(data)
+        setDataUserFromDB(data.dataUser)
         setLoadingToken(false)
 
       })
