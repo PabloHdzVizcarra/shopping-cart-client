@@ -42,7 +42,7 @@ const SignIn = () => {
       message: ''
     })
 
-    await fetch('http://127.0.0.1:1820/api/auth/register-user', {
+    await fetch('http://localhost:1820/api/auth/register-user', {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"

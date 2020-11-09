@@ -31,7 +31,7 @@ const Articles = props => {
 
   const handleClick = async (data) => {
 
-    await fetch("http://127.0.0.1:1820/api/add-product-cart", {
+    await fetch("api/add-product-cart", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

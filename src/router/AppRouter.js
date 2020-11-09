@@ -22,7 +22,6 @@ const AppRouter = () => {
     fetch('api/auth/verify-user')
       .then(resp => resp.json())
       .then(data => {
-        console.log(data)
 
         if (data.message) {
           console.log(data.message)
@@ -35,16 +34,14 @@ const AppRouter = () => {
       })
       .catch(error => {
         setLoadingToken(false)
-        console.log(error)
+        console.log(error.message)
       })
-
     //eslint-disable-next-line
   }, [])
 
   if (loadingToken) {
     return <Spinner />
   }
-
 
   return (
     <Router>

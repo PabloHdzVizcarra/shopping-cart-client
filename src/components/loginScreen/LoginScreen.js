@@ -17,7 +17,7 @@ const LoginScreen = () => {
   const [{ email, password }, handleInputChange, reset] = useForm({
     email: "",
     password: "",    
-  });
+  })
   
   const handleSubmit = async (event) => {
     event.preventDefault();

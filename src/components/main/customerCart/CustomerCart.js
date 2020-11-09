@@ -7,7 +7,7 @@ const CustomerCart = () => {
 
   const [state, dispatch] = useArticles()
   const  [ , ,  loading ]  = useFetch(
-    'http://127.0.0.1:1820/api/all-products-cart',
+    'api/all-products-cart',
     {},
     dispatch
   )

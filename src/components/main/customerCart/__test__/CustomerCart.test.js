@@ -66,7 +66,7 @@ describe('Test in ButtonDelete component', () => {
     await screen.findByTestId('Cart')
     expect(callApi).toHaveBeenCalled()
     expect(callApi).toHaveBeenCalledWith(
-      "http://127.0.0.1:1820/api/all-products-cart",
+      "api/all-products-cart",
       {}
     )
   })

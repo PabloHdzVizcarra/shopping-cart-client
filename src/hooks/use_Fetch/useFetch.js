@@ -8,6 +8,7 @@ const useFetch = (url, options, dispatch) => {
   React.useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
+    
     const doFetch = async () => {
       setLoading(true)
       try {

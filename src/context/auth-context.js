@@ -12,12 +12,12 @@ function AuthProvider({ children }) {
   })
 
   function setDataUserFromDB(data) {
-    console.log(data)
     setDataUser({
       isAuthenticated: true,
       data: {
         username: data.username,
         email: data.email,
+        id: data.id
       }
     })
   }
