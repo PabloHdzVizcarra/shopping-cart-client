@@ -9,16 +9,31 @@ export const AdminLoginScreen = () => {
     error: false,
     message: "",
   })
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(email, password)
-  }
-
-  const [{ email, password }, handleInputChange, reset] = useForm({
-    email: "",
+  
+  const [{ name, password }, handleInputChange, reset] = useForm({
+    name: "",
     password: "",    
   })
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    const resp = await fetch('/api/v1/admin-users', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        username: name.toLowerCase(),
+        password
+      })
+      
+    })
+    const data = await resp.json()
+    console.log(data)
+
+  }
+
 
   return (
     <div>
@@ -33,9 +48,9 @@ export const AdminLoginScreen = () => {
             <Input
               labelText="Nombre de usuario"
               inputType="text"
-              inputName="email"
+              inputName="name"
               handleInputChange={handleInputChange}
-              inputValue={email}
+              inputValue={name}
             />
 
             <Input

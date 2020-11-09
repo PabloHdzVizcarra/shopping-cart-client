@@ -106,7 +106,7 @@ const LoginScreen = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default LoginScreen;
