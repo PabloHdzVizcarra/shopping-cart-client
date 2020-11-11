@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const ElementP = ({styles, text}) => {
   return (
     <p
-      data-testid='elementP-component'
+      data-testid='paragraph-component'
       className={styles}
     >
       {text}
