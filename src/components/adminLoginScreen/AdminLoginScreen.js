@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { useAuthState } from '../../context/auth-context'
 import { useForm } from '../../hooks/useForm/useForm'
 import ErrorAlert from '../loginScreen/alerts/error-alert/ErrorAlert'
@@ -6,6 +7,7 @@ import Input from '../loginScreen/input/Input'
 import InputSubmit from '../loginScreen/inputSubmit/InputSubmit'
 
 const AdminLoginScreen = () => {
+  const history = useHistory()
   const [alerts, setAlerts] = React.useState({
     error: false,
     message: "",
@@ -14,8 +16,8 @@ const AdminLoginScreen = () => {
   const { setAdminUser } = useAuthState()
   
   const [{ name, password }, handleInputChange] = useForm({
-    name: "pablo",
-    password: "123456",    
+    name: "",
+    password: "",    
   })
 
   const handleSubmit = async (event) => {
@@ -42,6 +44,7 @@ const AdminLoginScreen = () => {
     }
 
     setAdminUser(resp.userData)
+    history.push('/admin')
     return null
   }
 

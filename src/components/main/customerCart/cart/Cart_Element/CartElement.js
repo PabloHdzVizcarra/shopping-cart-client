@@ -4,7 +4,7 @@ import ButtonDelete from '../../../../atoms/buttons/button_Delete/ButtonDelete'
 
 const CartElement = ({ name, price, id }) => {
 
-  const { } = useFetch(
+  const { data } = useFetch(
     'http://127.0.0.1:1820/api/delete-product',
     {
       method: "DELETE",
@@ -16,6 +16,7 @@ const CartElement = ({ name, price, id }) => {
       })
     }
   )
+  console.log(data)
   
   const handleDelete = () => {
     console.log(`delete element + ${id}`)
