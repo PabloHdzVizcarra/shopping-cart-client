@@ -32,6 +32,3 @@ const CartElement = ({ name, price, id }) => {
 }
 
 export default CartElement
-
-
-

@@ -16,11 +16,11 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton }) => {
     <>
       { hideElement
           ? <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => handleClick()}
-          >
-          Agregar Producto
-          </button>
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => handleClick()}
+            >
+            Agregar Producto
+            </button>
           : <h1>Elemento</h1>
       }  
     </>
