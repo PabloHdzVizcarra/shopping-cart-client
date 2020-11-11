@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Article = ({image, name, description, price,handleClick}) => {
+const Article = ({image, name, description, price, handleClick}) => {
   return (
     <div className="py-2">
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">

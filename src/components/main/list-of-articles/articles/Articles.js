@@ -38,11 +38,12 @@ const Articles = props => {
       },
       body: JSON.stringify(data),
     })
-      .then((result) => result.json())
-      .then((data) => {
+      .then(result => result.json())
+      .then(resp => {
+        console.log(resp)
         dispatch({
           type: "article",
-          payload: data.savedArticle,
+          payload: resp.savedArticle,
         })
 
         dispatch({
@@ -55,7 +56,9 @@ const Articles = props => {
         })
 
       })
-      .catch(console.log)
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   return (

@@ -33,12 +33,12 @@ describe('Test in Cart component', () => {
     customRender(<Cart
       data={data}
       loading={false}
-    />, {providerProps})
+    />, { providerProps })
 
-    expect(screen.getByTestId('Cart')).toBeInTheDocument()
+    expect(screen.getByTestId(/cart-component/)).toBeInTheDocument()
   })
 
-  test('should render the same number of components as the passed data', () => {
+  test('should render the same number of components as the passed data', async () => {
     const data = [
       {
         _id: "9463",
@@ -64,9 +64,8 @@ describe('Test in Cart component', () => {
     customRender(<Cart
       data={data}
       loading={false}
-    />, {providerProps})
-
-    expect(screen.getAllByTestId('CartElement').length).toBe(2)
+    />, { providerProps })
+    expect(screen.getAllByTestId(/cartElement-component/i).length).toBe(data.length)
   })
   
 })

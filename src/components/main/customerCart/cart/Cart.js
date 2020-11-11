@@ -14,16 +14,16 @@ const Cart = ({ data, loading }) => {
   return (
     <div
       className="flex flex-col items-end"
-      data-testid="Cart"
+      data-testid="cart-component"
     >
       {
         data.map(({ name, price, _id }) => 
-            <CartElement 
-              name={name}
-              price={price}
-              key={generateID()}
-              id={_id}
-            />
+          <CartElement 
+            name={name}
+            price={price}
+            key={generateID()}
+            id={_id}
+          />
         )
       }
     </div>

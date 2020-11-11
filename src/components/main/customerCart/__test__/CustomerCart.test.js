@@ -42,7 +42,7 @@ describe('Test in ButtonDelete component', () => {
       <CustomerCart />,
     )
 
-    await screen.findByTestId('Cart')
+    await screen.findByTestId(/cart-component/i)
     expect(screen.getByRole(/heading/)).toBeInTheDocument()
   })
 
@@ -63,7 +63,7 @@ describe('Test in ButtonDelete component', () => {
       <CustomerCart />,
     )
 
-    await screen.findByTestId('Cart')
+    await screen.findByTestId(/cart-component/i)
     expect(callApi).toHaveBeenCalled()
     expect(callApi).toHaveBeenCalledWith(
       "api/all-products-cart",
@@ -89,7 +89,7 @@ describe('Test in ButtonDelete component', () => {
       <CustomerCart />,
     )
 
-    await screen.findByTestId('Cart')
+    await screen.findByTestId(/cart-component/i)
     expect(mockArticlesReducer).toHaveBeenCalled()
   })
 
@@ -100,7 +100,7 @@ describe('Test in ButtonDelete component', () => {
     )
 
     expect(screen.getByTestId(/Spinner/)).toBeInTheDocument()
-    await screen.findByTestId(/Cart/)
+    await screen.findByTestId(/cart-component/i)
   })
 
   it('The component should render a Cart component', async () => {
@@ -109,8 +109,8 @@ describe('Test in ButtonDelete component', () => {
       <CustomerCart />
     )
 
-    await screen.findByTestId(/Cart/)
-    expect(screen.getByTestId(/Cart/)).toBeInTheDocument()
+    await screen.findByTestId(/cart-component/i)
+    expect(screen.getByTestId(/cart-component/i)).toBeInTheDocument()
   })
 
   it('the component must render the same number of CartElement components as the context of the app', async () => {

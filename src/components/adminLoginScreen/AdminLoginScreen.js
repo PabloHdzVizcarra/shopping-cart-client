@@ -16,8 +16,8 @@ const AdminLoginScreen = () => {
   const { setAdminUser } = useAuthState()
   
   const [{ name, password }, handleInputChange] = useForm({
-    name: "",
-    password: "",    
+    name: "pablo",
+    password: "123456",    
   })
 
   const handleSubmit = async (event) => {
