@@ -21,7 +21,7 @@ const AdminLoginScreen = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const resp = await fetch('/api/v1/log-admin-users', {
+    const data = await fetch('/api/v1/log-admin-users', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -31,16 +31,17 @@ const AdminLoginScreen = () => {
         password
       }),
     })
-    const data = await resp.json()
+    const resp = await data.json()
 
-    if (data?.error) {
+    if (resp?.error) {
       setAlerts({
         error: true,
-        message: "Ocurrio un error inesperado"
+        message: resp.message
       })
+      return null
     }
 
-    setAdminUser(data.userData)
+    setAdminUser(resp.userData)
     return null
   }
 

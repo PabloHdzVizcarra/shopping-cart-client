@@ -4,7 +4,7 @@ import { useForm } from "../../hooks/useForm/useForm";
 import ErrorAlert from "./alerts/error-alert/ErrorAlert";
 import Input from "./input/Input";
 import InputSubmit from "./inputSubmit/InputSubmit";
-import { AuthStateContext } from '../../context/auth-context'
+import { useAuthState } from '../../context/auth-context'
 import { validateFormFields } from "./validate-form-fields/validate-form-fields-login";
 
 const LoginScreen = () => {
@@ -13,7 +13,7 @@ const LoginScreen = () => {
     message: "",
   })
 
-  const { setDataUserFromDB } = React.useContext(AuthStateContext)
+  const {setDataUserFromDB} = useAuthState()
   const [{ email, password }, handleInputChange, reset] = useForm({
     email: "",
     password: "",    
@@ -36,7 +36,7 @@ const LoginScreen = () => {
       message: "",
     })
     
-    const resp = await fetch("api/auth/login-user", {
+    const data = await fetch("api/auth/login-user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -47,17 +47,17 @@ const LoginScreen = () => {
       })
     })
 
-    const data = await resp.json()
+    const resp = await data.json()
 
-    if (data?.message) {
+    if (resp?.error) {
       return setAlerts({
         error: true,
-        message: "La password que ingresaste es invalida"
+        message: resp.message
       })
     }
     
     reset()
-    setDataUserFromDB(data)
+    setDataUserFromDB(resp)
   }
 
   return (
