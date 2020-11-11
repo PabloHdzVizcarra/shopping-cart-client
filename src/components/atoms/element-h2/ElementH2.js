@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const ElementH2 = ({text, styles}) => {
   return (
     <h2
-      data-tesid={'h2-component'}
+      data-testid='h2-component'
       className={styles}
     >
       {text}

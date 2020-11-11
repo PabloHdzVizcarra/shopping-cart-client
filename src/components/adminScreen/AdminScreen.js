@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuthState } from '../../context/auth-context'
-import ElementH2 from '../atoms/element-h2/Elementh2'
+import ElementH2 from '../atoms/element-h2/ElementH2'
 import ElementP from '../atoms/element-p/ElementP'
 import AddProduct from './addProduct/AddProduct'
 import DeleteProduct from './deleteProduct/DeleteProduct'
@@ -8,7 +8,7 @@ import DeleteProduct from './deleteProduct/DeleteProduct'
 const AdminScreen = () => {
   const [hideAddButton, setHideAddButton] = React.useState(false)
   const [hideDeleteButton, setHideDeleteButton] = React.useState(false)
-  const {dataUser: {data: {username}}} = useAuthState()
+  const { dataUser: { data: { username } } } = useAuthState()
 
   return (
     <div
@@ -32,7 +32,7 @@ const AdminScreen = () => {
           hideAddButton={hideAddButton}
           setHideDeleteButton={setHideDeleteButton}
         />
-        
+
         <DeleteProduct 
           hideDeleteButton={hideDeleteButton}
           setHideAddButton={setHideAddButton}
