@@ -9,10 +9,10 @@ const CartElement = ({ name, price, id }) => {
 
   return (
     <div
-      className="py-2"
+      className="py-2 w-8/12"
       data-testid="CartElement-component"
     >
-      <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden justify-around items-center">
+      <div className="flex bg-white shadow-lg rounded-lg overflow-hidden justify-around items-center">
         <a
           href="https://google.com"
           className="w-1/3"
