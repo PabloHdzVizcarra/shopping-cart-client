@@ -55,8 +55,7 @@ const LoginScreen = () => {
         message: "La password que ingresaste es invalida"
       })
     }
-    console.log(data)
-
+    
     reset()
     setDataUserFromDB(data)
   }

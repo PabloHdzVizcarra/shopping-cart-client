@@ -5,15 +5,17 @@ export const AuthStateContext = React.createContext()
 function AuthProvider({ children }) {
   const [dataUser, setDataUser] = React.useState({
     isAuthenticated: false,
+    isAdmin: false,
     data: {
       username: '',
-      email: ''
+      email: '',
     }
   })
 
   function setDataUserFromDB(data) {
     setDataUser({
       isAuthenticated: true,
+      isAdmin: false,
       data: {
         username: data.username,
         email: data.email,
@@ -22,10 +24,25 @@ function AuthProvider({ children }) {
     })
   }
 
+  function setAdminUser(userData) {
+    const { username, id, isAdmin } = userData
+    setDataUser({
+      isAuthenticated: false,
+      isAdmin,
+      data: {
+        username,
+        id,
+        email: 'soporte@help.com'
+
+      }
+    })
+  }
+
   return (
     <AuthStateContext.Provider value={{
       dataUser,
-      setDataUserFromDB
+      setDataUserFromDB,
+      setAdminUser
     }}>
         {children}
     </AuthStateContext.Provider>

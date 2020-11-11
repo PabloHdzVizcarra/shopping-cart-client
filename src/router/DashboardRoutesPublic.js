@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom'
-import { AdminLoginScreen } from '../components/adminLoginScreen'
+import AdminLoginScreen from '../components/adminLoginScreen/AdminLoginScreen'
 import LoginScreen from '../components/loginScreen/LoginScreen'
 import SignIn from '../components/singScreen/SignIn'
 

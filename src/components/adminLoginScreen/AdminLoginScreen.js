@@ -1,24 +1,27 @@
 import React from 'react'
+import { useAuthState } from '../../context/auth-context'
 import { useForm } from '../../hooks/useForm/useForm'
 import ErrorAlert from '../loginScreen/alerts/error-alert/ErrorAlert'
 import Input from '../loginScreen/input/Input'
 import InputSubmit from '../loginScreen/inputSubmit/InputSubmit'
 
-export const AdminLoginScreen = () => {
+const AdminLoginScreen = () => {
   const [alerts, setAlerts] = React.useState({
     error: false,
     message: "",
   })
+
+  const { setAdminUser } = useAuthState()
   
-  const [{ name, password }, handleInputChange, reset] = useForm({
-    name: "",
-    password: "",    
+  const [{ name, password }, handleInputChange] = useForm({
+    name: "pablo",
+    password: "123456",    
   })
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const resp = await fetch('/api/v1/admin-users', {
+    const resp = await fetch('/api/v1/log-admin-users', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -26,12 +29,19 @@ export const AdminLoginScreen = () => {
       body: JSON.stringify({
         username: name.toLowerCase(),
         password
-      })
-      
+      }),
     })
     const data = await resp.json()
-    console.log(data)
 
+    if (data?.error) {
+      setAlerts({
+        error: true,
+        message: "Ocurrio un error inesperado"
+      })
+    }
+
+    setAdminUser(data.userData)
+    return null
   }
 
 
@@ -69,3 +79,6 @@ export const AdminLoginScreen = () => {
     </div>
   )
 }
+
+
+export default AdminLoginScreen
