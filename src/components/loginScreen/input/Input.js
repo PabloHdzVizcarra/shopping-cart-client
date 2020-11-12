@@ -8,8 +8,10 @@ function Input({ labelText, inputType, inputName, handleInputChange, inputValue 
       className="p-2 grid"
     >
       <label
-        className="text-xl text-green-900"
-      >{labelText}</label>
+        className="text-xl text-green-800"
+      >
+        {labelText}
+      </label>
       <input
         value={inputValue}
         onChange={handleInputChange}
@@ -24,6 +26,9 @@ function Input({ labelText, inputType, inputName, handleInputChange, inputValue 
 Input.propTypes = {
   labelText: PropTypes.string.isRequired,
   inputType: PropTypes.string.isRequired,
+  inputName: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  inputValue: PropTypes.string,
 }
 
 export default Input

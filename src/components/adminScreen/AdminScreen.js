@@ -16,7 +16,7 @@ const AdminScreen = () => {
       className="min-h-screen"
     >
       <div
-        className="grid gap-4 justify-center"
+        className="grid gap-4 justify-center grid-cols-1 justify-items-center"
       >
         <ElementH2 
           styles='text-4xl mt-4'
@@ -30,12 +30,15 @@ const AdminScreen = () => {
 
         <AddProduct 
           hideAddButton={hideAddButton}
+          setHideAddButton={setHideAddButton}
           setHideDeleteButton={setHideDeleteButton}
+          nameAdmin={username}
         />
 
         <DeleteProduct 
           hideDeleteButton={hideDeleteButton}
           setHideAddButton={setHideAddButton}
+          setHideDeleteButton={setHideDeleteButton}
         />
 
       </div>
