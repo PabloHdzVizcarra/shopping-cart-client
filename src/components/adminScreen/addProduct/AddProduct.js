@@ -15,16 +15,13 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
   })
 
   const handleClickButton = (event) => {
-    console.log("Presionaste Agregar")
     if (event.target.name === 'cancel') {
-      console.log('Presionaste Cancelar')
       setHideElement(true)
       setHideDeleteButton(false)
     }
   }
 
   const handleHideElement = () => {
-    console.log('Presionaste Agregar Producto')
     setHideDeleteButton(true)
     setHideElement(false)
     setHideAddButton(false)

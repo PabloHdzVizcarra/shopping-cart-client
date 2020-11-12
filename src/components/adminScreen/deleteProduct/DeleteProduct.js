@@ -4,7 +4,6 @@ const DeleteProduct = ({ hideDeleteButton, setHideAddButton, setHideDeleteButton
   const [hideElement, setHideElement] = React.useState(false)
 
   const handleClick = () => {
-    console.log('Presionaste Eliminar Producto')
     setHideElement(true)
     setHideAddButton(true)
     setHideDeleteButton(false)

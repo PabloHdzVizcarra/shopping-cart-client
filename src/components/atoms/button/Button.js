@@ -7,6 +7,7 @@ const Button = ({ styles, handleClick, text, nameButton }) => {
       className={styles}
       onClick={(event) => handleClick(event)}
       name={nameButton}
+      data-testid='button-element'
     >
       {text}
     </button>
