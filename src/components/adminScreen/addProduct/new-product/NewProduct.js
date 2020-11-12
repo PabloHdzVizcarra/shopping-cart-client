@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ElementH2 from '../../../atoms/element-h2/ElementH2'
 import Input from '../../../loginScreen/input/Input'
 import Button from '../../../atoms/button/Button'
+import Select from '../../../atoms/selected/Select'
 
 const NewProduct = ({ values, handleInputChange, handleClickButton }) => {
   const { name, price, image } = values
@@ -38,17 +39,14 @@ const NewProduct = ({ values, handleInputChange, handleClickButton }) => {
         handleInputChange={handleInputChange}
       />
 
-      <select
-        name="category"
-        className='p-2 w-full mt-2 rounded'
-        onChange={handleInputChange}
-      >
-        <option value="none" selected >--</option>
-        <option value="comida">comida</option>
-        <option value="limpieza">limpieza</option>
-        <option value="carnes">carnes frias</option>
-        <option value="hogar">hogar</option>
-      </select>
+      <Select
+        listOptions={
+          ['general', 'limpieza', 'electronica', 'ferreteria', 'perfumeria', 'farmacia', 'jugueteria', 'deportes', 'ropa', 'bebes', 'abarrotes']
+        }
+        nameElement='category'
+        styles='p-2 w-full mt-2 rounded'
+        handleInputChange={handleInputChange}
+      />
 
       <div
         className='flex justify-around'
