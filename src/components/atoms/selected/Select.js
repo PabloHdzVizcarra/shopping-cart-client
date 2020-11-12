@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { sortArray } from './sort-array/sort-array'
+import { generateID } from '../../../modules/generator-id/generator-id'
+import Option from './option/Option'
 
-const Select = ({ nameElement, styles, handleInputChange, listOptions }) => {
-  
+const Select = ({ nameElement, styles, handleInputChange, listOptions, valueElement }) => {
   const arraySort = sortArray(listOptions)
 
   return (
@@ -12,10 +13,14 @@ const Select = ({ nameElement, styles, handleInputChange, listOptions }) => {
       className={styles}
       onChange={handleInputChange}
       data-testid='select-element'
+      value={valueElement}
     >
       {
         arraySort.map(element => 
-          <option value={element}>{element}</option>
+          <Option 
+            value={element}
+            key={generateID(10)}
+          />
         )
       }
     </select>

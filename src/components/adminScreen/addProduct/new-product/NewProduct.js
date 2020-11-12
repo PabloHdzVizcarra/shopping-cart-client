@@ -6,7 +6,8 @@ import Button from '../../../atoms/button/Button'
 import Select from '../../../atoms/selected/Select'
 
 const NewProduct = ({ values, handleInputChange, handleClickButton }) => {
-  const { name, price, image } = values
+  console.log(values)
+  const { name, price, image, category } = values
 
   return (
     <div
@@ -46,6 +47,7 @@ const NewProduct = ({ values, handleInputChange, handleClickButton }) => {
         nameElement='category'
         styles='p-2 w-full mt-2 rounded'
         handleInputChange={handleInputChange}
+        valueElement={category}
       />
 
       <div
