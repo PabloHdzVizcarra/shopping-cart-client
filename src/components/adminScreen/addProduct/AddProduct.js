@@ -14,11 +14,18 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
     image: ''
   })
 
+  const handleSubmitForm = (event) => {
+    event.preventDefault()
+    console.log(values)
+    console.log('Enviando datos')
+  }
+
   const handleClickButton = (event) => {
     if (event.target.name === 'cancel') {
       setHideElement(true)
       setHideDeleteButton(false)
     }
+    console.log(values)
   }
 
   const handleHideElement = () => {
@@ -42,6 +49,7 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
             values={values}
             handleInputChange={handleInputChange}
             handleClickButton={handleClickButton}
+            handleSubmitForm={handleSubmitForm}
           />
       } 
     </>

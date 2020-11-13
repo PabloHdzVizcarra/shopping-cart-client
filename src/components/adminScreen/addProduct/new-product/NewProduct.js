@@ -4,14 +4,16 @@ import ElementH2 from '../../../atoms/element-h2/ElementH2'
 import Input from '../../../loginScreen/input/Input'
 import Button from '../../../atoms/button/Button'
 import Select from '../../../atoms/selected/Select'
+import SubmitButton from '../../../atoms/button-submit/SubmitButton'
 
-const NewProduct = ({ values, handleInputChange, handleClickButton }) => {
-  console.log(values)
+const NewProduct = ({ values, handleInputChange, handleClickButton, handleSubmitForm }) => {
   const { name, price, image, category } = values
 
   return (
-    <div
+    <form
       className='bg-green-100 p-4 rounded w-8/12'
+      data-testid='NewProduct-component'
+      onSubmit={handleSubmitForm}
     >
       <ElementH2 
         text='Agrega un Producto'
@@ -53,11 +55,9 @@ const NewProduct = ({ values, handleInputChange, handleClickButton }) => {
       <div
         className='flex justify-around'
       >
-        <Button 
-          text="Agregar"
+        <SubmitButton 
           styles="font-bold text-white hover:bg-green-700 bg-green-500 px-4 py-2 rounded mt-4 w-3/12 transition duration-300"
-          handleClick={handleClickButton}
-          nameButton='done'
+          name="Agregar"
         />
 
         <Button 
@@ -67,7 +67,7 @@ const NewProduct = ({ values, handleInputChange, handleClickButton }) => {
           handleClick={handleClickButton}
         />
       </div>
-    </div>
+    </form>
   )
 }
 
@@ -75,6 +75,7 @@ NewProduct.propTypes = {
   values: PropTypes.object.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleClickButton: PropTypes.func.isRequired,
+  handleSubmitForm: PropTypes.func.isRequired,
 }
 
 export default NewProduct
