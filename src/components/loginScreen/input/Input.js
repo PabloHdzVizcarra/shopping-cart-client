@@ -2,10 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-const Input = ({ labelText, inputType, inputName, handleInputChange, inputValue }) => {
+const Input = ({
+  labelText,
+  inputType,
+  inputName,
+  handleInputChange,
+  inputValue,
+  styles
+}) => {
   return (
     <div
-      className="p-2 grid"
+      className={styles}
       data-testid='input-element'
     >
       <label
@@ -30,6 +37,7 @@ Input.propTypes = {
   inputName: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   inputValue: PropTypes.string,
+  style: PropTypes.string,
 }
 
 export default Input

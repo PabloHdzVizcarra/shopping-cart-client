@@ -26,6 +26,7 @@ const NewProduct = ({ values, handleInputChange, handleClickButton, handleSubmit
         inputValue={name}
         inputType='text'
         handleInputChange={handleInputChange}
+        styles='grid p-2'
       />
       <Input 
         labelText='Precio'
@@ -33,6 +34,7 @@ const NewProduct = ({ values, handleInputChange, handleClickButton, handleSubmit
         inputValue={price}
         inputType='text'
         handleInputChange={handleInputChange}
+        styles='grid p-2'
       />
       <Input 
         labelText='URL Imagen'
@@ -40,6 +42,7 @@ const NewProduct = ({ values, handleInputChange, handleClickButton, handleSubmit
         inputValue={image}
         inputType='text'
         handleInputChange={handleInputChange}
+        styles='grid p-2'
       />
 
       <Select
