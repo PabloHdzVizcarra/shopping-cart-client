@@ -24,6 +24,7 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
     if (event.target.name === 'cancel') {
       setHideElement(true)
       setHideDeleteButton(false)
+      return null
     }
     console.log(values)
   }
