@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import NewProduct from './new-product/NewProduct'
 import { useForm } from '../../../hooks/useForm/useForm'
+import { useValidateForm } from '../../../hooks/useValidateForm/useValidateForm'
 
 const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddButton }) => {
   const [hideElement, setHideElement] = React.useState(true)
@@ -14,10 +15,19 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
     image: ''
   })
 
+  const [validateForm, showAlert] = useValidateForm()
+
   const handleSubmitForm = (event) => {
     event.preventDefault()
-    console.log(values)
-    console.log('Enviando datos')
+    const { name, price, image, category } = values
+    validateForm(name, price, image, category)
+
+    if (showAlert.alert) {
+      console.log('Tienes errores')
+      return null
+    }
+    console.log('no tienes errores')
+
   }
 
   const handleClickButton = (event) => {
@@ -61,6 +71,7 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
 AddProduct.propTypes = {
   setHideDeleteButton: PropTypes.func.isRequired,
   hideAddButton: PropTypes.bool.isRequired,
+  nameAdmin: PropTypes.string.isRequired,
 }
 
 export default AddProduct
