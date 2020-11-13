@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-function Input({ labelText, inputType, inputName, handleInputChange, inputValue }) {
+const Input = ({ labelText, inputType, inputName, handleInputChange, inputValue }) => {
   return (
     <div
       className="p-2 grid"
+      data-testid='input-element'
     >
       <label
         className="text-xl text-green-800"

@@ -7,7 +7,7 @@ describe('Test in Select component', () => {
   const nameElement = 'category'
   const styles = 'center bold'
   const handleInputChange = jest.fn(() => { })
-  const listOptions = ['ubuntu', 'xubuntu', 'lubuntu', 'kubuntu', 'ubuntu budgie']
+  const listOptions = ['ubuntu', 'xubuntu', 'kubuntu']
 
 
   beforeEach(() => {
@@ -51,6 +51,7 @@ describe('Test in Select component', () => {
     expect(screen.getByRole(/combobox/).value).toBe('xubuntu')
     expect(screen.getByText('xubuntu').selected).toBe(true)
     expect(screen.getByText('kubuntu').selected).toBe(false)
+    expect(screen.getByText('ubuntu').selected).toBe(false)
   })
   
   
