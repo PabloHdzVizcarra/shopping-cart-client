@@ -4,9 +4,8 @@ import NewProduct from './new-product/NewProduct'
 import { useForm } from '../../../hooks/useForm/useForm'
 import { useValidateForm } from '../../../hooks/useValidateForm/useValidateForm'
 
-const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddButton }) => {
+const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddButton }) => {
   const [hideElement, setHideElement] = React.useState(true)
-
   const [values, handleInputChange] = useForm({
     name: '',
     price: '',
@@ -14,15 +13,14 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
     admin: nameAdmin,
     image: ''
   })
-
-  const [validateForm, showAlert] = useValidateForm()
-
+  const { name, price, category, image } = values
+  const [validateForm, showAlert] = useValidateForm(name, price, category, image)
+  
   const handleSubmitForm = (event) => {
     event.preventDefault()
-    const { name, price, image, category } = values
-    validateForm(name, price, image, category)
+    validateForm()
 
-    if (showAlert.alert) {
+    if (showAlert.alert || showAlert?.step === 1) {
       console.log('Tienes errores')
       return null
     }
@@ -45,10 +43,18 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
     setHideAddButton(false)
   }
 
-  if (hideAddButton) return null
+  if (hideComponent) return null
 
   return (
-    <>
+    <div
+      data-testid='add_product'
+      className='flex w-11/12 justify-center'
+    >
+      {showAlert.alert
+        ? <p>{showAlert.message}</p>
+        : null
+      }
+
       { hideElement
           ? <button
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
@@ -63,14 +69,14 @@ const AddProduct = ({ setHideDeleteButton, hideAddButton, nameAdmin, setHideAddB
             handleSubmitForm={handleSubmitForm}
           />
       } 
-    </>
+    </div>
     
   )
 }
 
 AddProduct.propTypes = {
   setHideDeleteButton: PropTypes.func.isRequired,
-  hideAddButton: PropTypes.bool.isRequired,
+  hideComponent: PropTypes.bool.isRequired,
   nameAdmin: PropTypes.string.isRequired,
 }
 

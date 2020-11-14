@@ -12,8 +12,8 @@ const NewProduct = ({ values, handleInputChange, handleClickButton, handleSubmit
   return (
     <form
       className='bg-green-100 p-4 rounded w-8/12'
-      data-testid='NewProduct-component'
-      onSubmit={handleSubmitForm}
+      data-testid='new_product'
+      onSubmit={(event) => handleSubmitForm(event)}
     >
       <ElementH2 
         text='Agrega un Producto'

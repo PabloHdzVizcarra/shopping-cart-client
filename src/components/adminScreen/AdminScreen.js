@@ -29,7 +29,7 @@ const AdminScreen = () => {
         />
 
         <AddProduct 
-          hideAddButton={hideAddButton}
+          hideComponent={hideAddButton}
           setHideAddButton={setHideAddButton}
           setHideDeleteButton={setHideDeleteButton}
           nameAdmin={username}

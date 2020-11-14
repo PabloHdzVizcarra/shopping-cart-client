@@ -1,20 +1,21 @@
-import { useState } from "react"
+import React from 'react'
 
-export const useValidateForm = () => {
-  const [showAlert, setShowAlert] = useState({
+
+export const useValidateForm = (name, price, category, image) => {
+  const [showAlert, setShowAlert] = React.useState({
     alert: false,
-    message: ''
+    message: '',
+    step: 1
   })
-  const [data, setData] = useState({})
 
   function validateUrl(url) {
     const re = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&=]*)/;
     return re.test(url)
   }
 
-  const validateForm = (...values) => {
+  const validateForm = () => {
     
-    if (values[0].length <= 3) {
+    if (name.length <= 3) {
       setShowAlert({
         alert: true,
         message: 'El nombre no puede ser menor a 3 caracteres'
@@ -22,7 +23,7 @@ export const useValidateForm = () => {
       return null
     }
 
-    if (values[1] <= 0) {
+    if (parseInt(price) <= 0 || price === '') {
       setShowAlert({
         alert: true,
         message: 'El articulo tiene que tener un valor valido'
@@ -31,7 +32,7 @@ export const useValidateForm = () => {
     }
     
 
-    if (!validateUrl(values[2])) {
+    if (!validateUrl(image)) {
       setShowAlert({
         alert: true,
         message: 'La url que ingresaste no es valida'
@@ -39,7 +40,7 @@ export const useValidateForm = () => {
       return null
     }
 
-    if (values[3] === '') {
+    if (category === '') {
       setShowAlert({
         alert: true,
         message: 'Debes seleccionar una categoria'
@@ -53,5 +54,5 @@ export const useValidateForm = () => {
     })
   }
   
-  return [validateForm, showAlert, data]
+  return [validateForm, showAlert]
 }

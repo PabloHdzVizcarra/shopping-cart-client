@@ -22,7 +22,7 @@ describe('Test in NewProduct', () => {
       values={values}
     />)
 
-    expect(screen.getByTestId(/NewProduct-component/)).toBeInTheDocument()
+    expect(screen.getByTestId(/new_product/)).toBeInTheDocument()
   })
 
   test('the component should render following internal components', () => {
