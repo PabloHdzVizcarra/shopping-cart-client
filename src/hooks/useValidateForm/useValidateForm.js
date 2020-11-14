@@ -4,6 +4,7 @@ import React from 'react'
 export const useValidateForm = (name, price, category, image) => {
   const [showAlert, setShowAlert] = React.useState({
     alert: false,
+    succesAlert: false,
     message: '',
     step: 1
   })
@@ -23,7 +24,7 @@ export const useValidateForm = (name, price, category, image) => {
       return null
     }
 
-    if (parseInt(price) <= 0 || price === '') {
+    if (parseInt(price) < 0 || isNaN(parseInt(price))) {
       setShowAlert({
         alert: true,
         message: 'El articulo tiene que tener un valor valido'
@@ -50,7 +51,8 @@ export const useValidateForm = (name, price, category, image) => {
 
     setShowAlert({
       alert: false,
-      message: ''
+      succesAlert: true,
+      message: 'Se creo con exito el componente'
     })
   }
   

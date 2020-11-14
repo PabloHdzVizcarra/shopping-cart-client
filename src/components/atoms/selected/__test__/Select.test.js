@@ -9,7 +9,6 @@ describe('Test in Select component', () => {
   const handleInputChange = jest.fn(() => { })
   const listOptions = ['ubuntu', 'xubuntu', 'kubuntu']
 
-
   beforeEach(() => {
     jest.clearAllMocks()
   })
