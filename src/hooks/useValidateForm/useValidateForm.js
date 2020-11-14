@@ -1,14 +1,16 @@
 import React from 'react'
 
-
 export const useValidateForm = (name, price, category, image) => {
   const [showAlert, setShowAlert] = React.useState({
     alert: false,
-    succesAlert: false,
+    succesAlert: {
+      display: false,
+      message: ''
+    },
     message: '',
     step: 1
   })
-
+  
   function validateUrl(url) {
     const re = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&=]*)/;
     return re.test(url)
@@ -50,10 +52,13 @@ export const useValidateForm = (name, price, category, image) => {
     }
 
     setShowAlert({
-      alert: false,
-      succesAlert: true,
-      message: 'Se creo con exito el componente'
+      ...showAlert,
+      succesAlert: {
+        display: true,
+        message: `Se guardo con exito el articulo ${name}`
+      }
     })
+    return null
   }
   
   return [validateForm, showAlert]

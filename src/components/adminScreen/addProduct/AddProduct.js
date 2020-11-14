@@ -8,7 +8,7 @@ import ErrorAlert from '../../loginScreen/alerts/error-alert/ErrorAlert'
 
 const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddButton }) => {
   const [hideElement, setHideElement] = React.useState(true)
-  const [values, handleInputChange] = useForm({
+  const [values, handleInputChange, reset] = useForm({
     name: '',
     price: '',
     category: '',
@@ -25,8 +25,9 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
     if (showAlert.alert || showAlert?.step === 1) {
       return null
     }
-    console.log('no tienes errores')
 
+    console.log('no tienes errores')
+    reset()
   }
 
   const handleClickButton = (event) => {
@@ -72,9 +73,10 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
             handleSubmitForm={handleSubmitForm}
           />
       }
-      {showAlert.succesAlert
+      {showAlert?.succesAlert?.display
         ? <AlertSuccess 
-            message={showAlert.message}
+          message={'la vida'}
+          secondsHide={3000}
           />
         : null
       }

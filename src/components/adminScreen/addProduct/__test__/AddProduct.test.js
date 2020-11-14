@@ -84,12 +84,18 @@ describe('Test in AddProduct component', () => {
   test('if all the data entered is valid, it should show a success alert', () => {
     renderComponent()
     userEvent.click(screen.getByRole(/button/))
-    userEvent.type(screen.getAllByRole(/textbox/)[0], 'Ubuntu')
-    userEvent.type(screen.getAllByRole(/textbox/)[1], '10')
-    userEvent.type(screen.getAllByRole(/textbox/)[2], 'www.cloudinary.com')
-    userEvent.selectOptions(screen.getByRole(/combobox/), 'general')
-    userEvent.click(screen.getByText(/Agregar/))
+    const completeForm = () => {
+      
+      userEvent.type(screen.getAllByRole(/textbox/)[0], 'Ubuntu')
+      userEvent.type(screen.getAllByRole(/textbox/)[1], '10')
+      userEvent.type(screen.getAllByRole(/textbox/)[2], 'www.cloudinary.com')
+      userEvent.selectOptions(screen.getByRole(/combobox/), 'general')
+      userEvent.click(screen.getByText(/Agregar/))
 
+    }
+    completeForm()
+    expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    completeForm()
     expect(screen.getByRole(/alert/)).toBeInTheDocument()
   })
   
