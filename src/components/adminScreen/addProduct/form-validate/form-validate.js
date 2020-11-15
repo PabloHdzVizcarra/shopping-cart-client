@@ -1,4 +1,4 @@
-import { urlValidate } from "../../../../hooks/useValidateForm/url-validate/url-validate"
+import { urlValidate } from "../url-validate/url-validate"
 
 export const formValidate = (name, price, image, category) => {
 

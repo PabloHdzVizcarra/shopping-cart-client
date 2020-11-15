@@ -13,20 +13,20 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
     message: '',
     typeAlert: ''
   })
-  const [values, handleInputChange, reset] = useForm({
+  const [values, handleInputChange] = useForm({
     name: '',
     price: '',
     category: '',
     admin: nameAdmin,
     image: ''
   })
+
   const { name, price, category, image } = values
   const handleSubmitForm = (event) => {
     event.preventDefault()
     const { error, display, message } = formValidate(name, price, image, category)
 
     if (error) {
-      console.log('Not validate form')
       setAlert({
         display,
         message
@@ -40,6 +40,8 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       message,
       typeAlert: "success"
     })
+
+    
 
     //reset()
   }
