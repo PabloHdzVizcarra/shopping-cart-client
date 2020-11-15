@@ -49,6 +49,7 @@ describe('Test in AddProduct component', () => {
     userEvent.type(screen.getAllByRole(/textbox/)[0], 'U')
     userEvent.click(screen.getByText(/Agregar/))
     expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByText(/error/i)).toBeInTheDocument()
   })
 
   test('the input element is filled in the wrong way with the price attribute, an alert should be displayed indicating the error', () => {
@@ -58,6 +59,7 @@ describe('Test in AddProduct component', () => {
     userEvent.type(screen.getAllByRole(/textbox/)[1], 'free')
     userEvent.click(screen.getByText(/Agregar/))
     expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByText(/error/i)).toBeInTheDocument()
   })
 
   test('the input element is filled in the wrong way with the image attribute, an alert should be displayed indicating the error', () => {
@@ -68,6 +70,7 @@ describe('Test in AddProduct component', () => {
     userEvent.type(screen.getAllByRole(/textbox/)[2], 'someUrl')
     userEvent.click(screen.getByText(/Agregar/))
     expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByText(/error/i)).toBeInTheDocument()
   })
 
   test('if no category is selected in select element, it should show error alert', () => {
@@ -79,6 +82,7 @@ describe('Test in AddProduct component', () => {
     userEvent.type(screen.getByRole(/combobox/), '')
     userEvent.click(screen.getByText(/Agregar/))
     expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByText(/error/i)).toBeInTheDocument()
   })
 
   test('if all the data entered is valid, it should show a success alert', () => {
@@ -91,12 +95,11 @@ describe('Test in AddProduct component', () => {
       userEvent.type(screen.getAllByRole(/textbox/)[2], 'www.cloudinary.com')
       userEvent.selectOptions(screen.getByRole(/combobox/), 'general')
       userEvent.click(screen.getByText(/Agregar/))
-
     }
+
     completeForm()
     expect(screen.getByRole(/alert/)).toBeInTheDocument()
-    completeForm()
-    expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByText(/success/i)).toBeInTheDocument()
   })
   
 })

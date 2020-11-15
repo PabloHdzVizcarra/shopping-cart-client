@@ -2,12 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import NewProduct from './new-product/NewProduct'
 import { useForm } from '../../../hooks/useForm/useForm'
-import { useValidateForm } from '../../../hooks/useValidateForm/useValidateForm'
 import AlertSuccess from '../../atoms/alert/alert-success/AlertSuccess'
 import ErrorAlert from '../../loginScreen/alerts/error-alert/ErrorAlert'
+import { formValidate } from './form-validate/form-validate'
 
 const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddButton }) => {
   const [hideElement, setHideElement] = React.useState(true)
+  const [alert, setAlert] = React.useState({
+    display: false,
+    message: '',
+    typeAlert: ''
+  })
   const [values, handleInputChange, reset] = useForm({
     name: '',
     price: '',
@@ -16,18 +21,27 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
     image: ''
   })
   const { name, price, category, image } = values
-  const [validateForm, showAlert] = useValidateForm(name, price, category, image)
-
   const handleSubmitForm = (event) => {
     event.preventDefault()
-    validateForm()
+    const { error, display, message } = formValidate(name, price, image, category)
 
-    if (showAlert.alert || showAlert?.step === 1) {
+    if (error) {
+      console.log('Not validate form')
+      setAlert({
+        display,
+        message
+      })
       return null
     }
 
-    console.log('no tienes errores')
-    reset()
+    console.log('Form is validate')
+    setAlert({
+      display: false,
+      message,
+      typeAlert: "success"
+    })
+
+    //reset()
   }
 
   const handleClickButton = (event) => {
@@ -36,13 +50,14 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       setHideDeleteButton(false)
       return null
     }
-    console.log(values)
+    return null
   }
 
   const handleHideElement = () => {
     setHideDeleteButton(true)
     setHideElement(false)
     setHideAddButton(false)
+    return null
   }
 
   if (hideComponent) return null
@@ -52,9 +67,9 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       data-testid='add_product'
       className='flex w-10/12 flex-col items-center'
     >
-      {showAlert.alert
+      {alert.display
         ? <ErrorAlert 
-            message={showAlert.message}
+            message={alert.message}
           />
         : null
       }
@@ -73,11 +88,12 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
             handleSubmitForm={handleSubmitForm}
           />
       }
-      {showAlert?.succesAlert?.display
+      {
+        alert.typeAlert === 'success'
         ? <AlertSuccess 
-          message={'la vida'}
-          secondsHide={3000}
-          />
+          message={alert.message}
+          secondsHide={2000}
+        />
         : null
       }
     </div>
