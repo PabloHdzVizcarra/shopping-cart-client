@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm/useForm'
-import ErrorAlert from '../loginScreen/alerts/error-alert/ErrorAlert'
+import ErrorAlert from '../loginScreen/alerts/alert-message/AlertMessage'
 import Input from '../loginScreen/input/Input'
 import InputSubmit from '../loginScreen/inputSubmit/InputSubmit'
 import { validateFormFieldsRegister } from '../loginScreen/validate-form-fields/validate-form-fields-regster'

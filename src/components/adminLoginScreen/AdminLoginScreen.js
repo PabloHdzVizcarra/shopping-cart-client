@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuthState } from '../../context/auth-context'
 import { useForm } from '../../hooks/useForm/useForm'
-import ErrorAlert from '../loginScreen/alerts/error-alert/ErrorAlert'
+import ErrorAlert from '../loginScreen/alerts/alert-message/AlertMessage'
 import Input from '../loginScreen/input/Input'
 import InputSubmit from '../loginScreen/inputSubmit/InputSubmit'
 
@@ -22,7 +22,6 @@ const AdminLoginScreen = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
     const data = await fetch('/api/v1/log-admin-users', {
       method: 'POST',
       headers: {

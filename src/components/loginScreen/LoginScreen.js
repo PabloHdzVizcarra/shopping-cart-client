@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm/useForm";
-import ErrorAlert from "./alerts/error-alert/ErrorAlert";
+import ErrorAlert from "./alerts/alert-message/AlertMessage";
 import Input from "./input/Input";
 import InputSubmit from "./inputSubmit/InputSubmit";
 import { useAuthState } from '../../context/auth-context'
