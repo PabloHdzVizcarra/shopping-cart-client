@@ -19,6 +19,18 @@ describe('Test in AddProduct component', () => {
     />)
   }
 
+  const completeForm = () => {
+    userEvent.type(screen.getAllByRole(/textbox/)[0], 'Ubuntu')
+    userEvent.type(screen.getAllByRole(/textbox/)[1], '10')
+    userEvent.type(screen.getAllByRole(/textbox/)[2], 'www.cloudinary.com')
+    userEvent.selectOptions(screen.getByRole(/combobox/), 'general')
+    userEvent.click(screen.getByText(/Agregar/))
+  }
+
+  beforeEach(() => {
+    fetch.mockClear();
+  })
+
   test('the component should only render a button element', () => {
     renderComponent()
     expect(screen.getByRole(/button/)).toBeInTheDocument()
@@ -85,21 +97,33 @@ describe('Test in AddProduct component', () => {
     expect(screen.getByText(/error/i)).toBeInTheDocument()
   })
 
-  test('if all the data entered is valid, it should show a success alert', () => {
+  test('if all the data entered is valid, it should show a success alert', async () => {
+    global.fetch = jest.fn(() => 
+      Promise.resolve({
+        json: () => Promise.resolve({ error: false })
+      })
+    )
     renderComponent()
     userEvent.click(screen.getByRole(/button/))
-    const completeForm = () => {
-      
-      userEvent.type(screen.getAllByRole(/textbox/)[0], 'Ubuntu')
-      userEvent.type(screen.getAllByRole(/textbox/)[1], '10')
-      userEvent.type(screen.getAllByRole(/textbox/)[2], 'www.cloudinary.com')
-      userEvent.selectOptions(screen.getByRole(/combobox/), 'general')
-      userEvent.click(screen.getByText(/Agregar/))
-    }
-
     completeForm()
-    expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    await screen.findByRole(/alert/)
+
     expect(screen.getByText(/success/i)).toBeInTheDocument()
   })
+
+  test('it should show an error alert if something goes wrong in the API when saving data', async () => {
+    global.fetch = jest.fn(() => 
+      Promise.reject({
+        error: true,
+        message: "ha ocurrido un error en la database",
+      })
+    )
+    renderComponent()
+    userEvent.click(screen.getByRole(/button/))
+    completeForm()
+    await screen.findByRole(/alert/)
+    expect(screen.getByText(/error/g)).toBeInTheDocument()
+  })
+  
   
 })
