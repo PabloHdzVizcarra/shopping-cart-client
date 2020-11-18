@@ -4,6 +4,7 @@ import NewProduct from './new-product/NewProduct'
 import { useForm } from '../../../hooks/useForm/useForm'
 import AlertMessage from '../../loginScreen/alerts/alert-message/AlertMessage'
 import { formValidate } from './form-validate/form-validate'
+import { arrayCheckErrors } from './helpers/check-errors/arrayCheckErrors'
 
 const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddButton }) => {
   const [hideElement, setHideElement] = React.useState(true)
@@ -25,6 +26,7 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
   })
 
   const { name, price, category, image } = values
+
   const handleSubmitForm = async (event) => {
     event.preventDefault()
     const { error, message } = formValidate(name, price, image, category)
@@ -42,7 +44,6 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
     }
 
     try {
-      
       const response = await fetch('/api/v1/admin/create-article', {
         method: "POST",
         body: JSON.stringify(values),
@@ -51,7 +52,18 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
         },
       })
 
-      await response.json()
+      const data = await response.json()
+      if (arrayCheckErrors(data.errors)) {
+        setAlert({
+          display: true,
+          message: data.errors[0],
+          alertType: {
+            color: 'red',
+            type: 'Error'
+          }
+        })
+        return null
+      }
       setAlert({
         display: true,
         message,
