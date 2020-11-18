@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const useFetch = (url, options, dispatch) => {
+const useFetch = (url, options) => {
   const [response, setResponse] = React.useState(null)
   const [error, setError] = React.useState(null)
   const [loading, setLoading] = React.useState(false)
@@ -16,11 +16,6 @@ const useFetch = (url, options, dispatch) => {
         const json = await res.json()
         if (!signal.aborted) {
           setResponse(json)
-          dispatch({
-            type: 'setAllData',
-            payload: json
-          })
-
           return null
         }
         
