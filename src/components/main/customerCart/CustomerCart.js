@@ -6,6 +6,7 @@ import Cart from './cart/Cart'
 const CustomerCart = () => {
 
   const [state, dispatch] = useArticles()
+  console.log(state)
   const  [ , ,  loading ]  = useFetch(
     'api/all-products-cart',
     {},
