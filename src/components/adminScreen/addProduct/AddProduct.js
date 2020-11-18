@@ -5,43 +5,25 @@ import { useForm } from '../../../hooks/useForm/useForm'
 import AlertMessage from '../../loginScreen/alerts/alert-message/AlertMessage'
 import { formValidate } from './form-validate/form-validate'
 import { arrayCheckErrors } from './helpers/check-errors/arrayCheckErrors'
+import { useShowAlerts } from '../../../hooks/useShowAlerts/useShowAlerts'
 
 const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddButton }) => {
   const [hideElement, setHideElement] = React.useState(true)
-  const [alert, setAlert] = React.useState({
-    display: false,
-    message: '',
-    alertType: {
-      color: '',
-      type: ''
-    }
-  })
-
-  const [values, handleInputChange] = useForm({
+  const [values, handleInputChange, reset] = useForm({
     name: '',
     price: '',
     category: '',
     admin: nameAdmin,
     image: ''
   })
-
+  const [createAlert, alert2] = useShowAlerts()
   const { name, price, category, image } = values
 
   const handleSubmitForm = async (event) => {
     event.preventDefault()
     const { error, message } = formValidate(name, price, image, category)
 
-    if (error) {
-      setAlert({
-        display: true,
-        message,
-        alertType: {
-          color: 'red',
-          type: 'Error'
-        }
-      })
-      return null
-    }
+    if (error) return createAlert(message, 'red', 'Error')
 
     try {
       const response = await fetch('/api/v1/admin/create-article', {
@@ -51,42 +33,17 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
           "Content-Type": "application/json"
         },
       })
-
       const data = await response.json()
-      if (arrayCheckErrors(data.errors)) {
-        setAlert({
-          display: true,
-          message: data.errors[0],
-          alertType: {
-            color: 'red',
-            type: 'Error'
-          }
-        })
-        return null
-      }
-      setAlert({
-        display: true,
-        message,
-        alertType: {
-          color: 'green',
-          type: 'Success'
-        }
-      })
 
-      return null
+      if (arrayCheckErrors(data.errors)) return createAlert(data.errors[0], 'red', 'type')
+
+      reset() // reset form
+      return createAlert(message, 'green', 'Success')
     } catch (error) {
-      setAlert({
-        display: true,
-        message: error.message,
-        alertType: {
-          color: 'red',
-          type: 'Error'
-        }
-      })
-      console.log(error)
-      return null
+      createAlert(error.message, 'red', 'Error')
+      return console.log(error)
     }
-
+    
   }
 
   const handleClickButton = (event) => {
@@ -112,11 +69,11 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       data-testid='add_product'
       className='flex w-10/12 flex-col items-center'
     >
-      {alert.display
+      {alert2.display
         ? <AlertMessage 
-            message={alert.message}
-            type={alert.alertType.type}
-            color={alert.alertType.color}
+            message={alert2.message}
+            type={alert2.alertType.type}
+            color={alert2.alertType.color}
           />
         : null
       }
