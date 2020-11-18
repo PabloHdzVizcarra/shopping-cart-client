@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
 export const useShowAlerts = () => {
   const [alert, setAlert] = useState({

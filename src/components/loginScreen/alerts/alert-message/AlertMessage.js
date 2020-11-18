@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-const AlertMessage = ({ message, type, color }) => {
+const AlertMessage = ({ message, type, color, secondsToHide, change}) => {
   const [hidden, setHidden] = useState(false)
-
+  
   useEffect(() => {
     setTimeout(() => {
       setHidden(true)
-    }, 3000)
+    }, secondsToHide || 2000)
+    
     return () => {
       setHidden(false)
     }
-  }, [message])
+  }, [change, secondsToHide])
 
   if (hidden) return null
 
@@ -28,7 +29,8 @@ const AlertMessage = ({ message, type, color }) => {
 
 AlertMessage.propTypes = {
   message: PropTypes.string.isRequired,
-  type: PropTypes.string
+  type: PropTypes.string.isRequired,
+  secondsToHide: PropTypes.number,
 }
 
 export default AlertMessage

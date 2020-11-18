@@ -16,16 +16,19 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
     admin: nameAdmin,
     image: ''
   })
-  const [createAlert, alert2] = useShowAlerts()
+  const [createAlert, alert] = useShowAlerts()
+  const [change, setChange] = React.useState(true)
   const { name, price, category, image } = values
 
   const handleSubmitForm = async (event) => {
     event.preventDefault()
+    setChange(change => ! change)
     const { error, message } = formValidate(name, price, image, category)
 
     if (error) return createAlert(message, 'red', 'Error')
 
     try {
+      console.log(values)
       const response = await fetch('/api/v1/admin/create-article', {
         method: "POST",
         body: JSON.stringify(values),
@@ -38,7 +41,8 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       if (arrayCheckErrors(data.errors)) return createAlert(data.errors[0], 'red', 'type')
 
       reset() // reset form
-      return createAlert(message, 'green', 'Success')
+      createAlert(message, 'green', 'Success')
+      return null
     } catch (error) {
       createAlert(error.message, 'red', 'Error')
       return console.log(error)
@@ -69,11 +73,12 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       data-testid='add_product'
       className='flex w-10/12 flex-col items-center'
     >
-      {alert2.display
+      {alert.display
         ? <AlertMessage 
-            message={alert2.message}
-            type={alert2.alertType.type}
-            color={alert2.alertType.color}
+            message={alert.message}
+            type={alert.alertType.type}
+            color={alert.alertType.color}
+            change={change}
           />
         : null
       }
