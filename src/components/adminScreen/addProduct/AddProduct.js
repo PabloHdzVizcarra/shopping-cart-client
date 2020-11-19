@@ -14,7 +14,8 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
     price: '',
     category: '',
     admin: nameAdmin,
-    image: ''
+    image: '',
+    description: ''
   })
   const [createAlert, alert] = useShowAlerts()
   const [change, setChange] = React.useState(true)
@@ -47,7 +48,7 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       createAlert(error.message, 'red', 'Error')
       return console.log(error)
     }
-    
+
   }
 
   const handleClickButton = (event) => {
@@ -74,7 +75,7 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       className='flex w-10/12 flex-col items-center'
     >
       {alert.display
-        ? <AlertMessage 
+        ? <AlertMessage
             message={alert.message}
             type={alert.alertType.type}
             color={alert.alertType.color}
@@ -90,7 +91,7 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
             >
             Agregar Producto
             </button>
-        : <NewProduct 
+        : <NewProduct
             values={values}
             handleInputChange={handleInputChange}
             handleClickButton={handleClickButton}
@@ -99,7 +100,7 @@ const AddProduct = ({ setHideDeleteButton, hideComponent, nameAdmin, setHideAddB
       }
 
     </div>
-    
+
   )
 }
 
