@@ -21,6 +21,13 @@ export const articlesReducer = (state = {}, action) => {
       }
     }
       
+    case 'setArticlesInStore': {
+      return {
+        ...state,
+        listOfArticles: [...action.payload]
+      }
+    }  
+      
     case 'deleteElement': {
       return {
         ...state,

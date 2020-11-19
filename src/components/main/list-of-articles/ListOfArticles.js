@@ -4,9 +4,8 @@ import Spinner from '../../atoms/spinner/Spinner'
 import Articles from './articles/Articles'
 
 const ListOfArticles = () => {
-
-  
   const [response, error, loading] = useFetch('/api/v1/all-articles')
+  if (error) console.log(error)
 
   return (
     <div>
@@ -15,8 +14,8 @@ const ListOfArticles = () => {
         {loading
           ? <Spinner />
           : <Articles
-            data={response}
-          />
+              data={response}
+            />
         }
       </div>
     </div>

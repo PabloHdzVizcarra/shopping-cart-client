@@ -11,7 +11,8 @@ function ArticlesProvider({ children }) {
       typeAlert: false,
       message: '',
       thereAlert: false
-    }
+    },
+    listOfArticles: [], 
   })
 
   return (
