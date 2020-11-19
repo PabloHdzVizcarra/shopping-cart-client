@@ -8,7 +8,7 @@ const useFetch = (url, options) => {
   React.useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-    
+
     const doFetch = async () => {
       setLoading(true)
       try {
@@ -18,7 +18,7 @@ const useFetch = (url, options) => {
           setResponse(json)
           return null
         }
-        
+
       } catch (error) {
         if (!signal.aborted) {
           setError(error)

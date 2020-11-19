@@ -4,11 +4,11 @@ import { generateID } from '../../../../modules/generator-id/generator-id'
 import { useArticles } from '../../../../context/articles-context'
 
 const Articles = ({ data }) => {
-  const [{listOfArticles}, dispatch] = useArticles()
-  
+  const [{ listOfArticles }, dispatch] = useArticles()
+
   useEffect(() => {
     if (!data) return null
-    
+
     dispatch({
       type: "setArticlesInStore",
       payload: data.data
@@ -50,9 +50,9 @@ const Articles = ({ data }) => {
 
   return (
     <div>
-      
-      {listOfArticles.map(({name, image, description, price, category}) => 
-        <Article 
+
+      {listOfArticles.map(({name, image, description, price, category}) =>
+        <Article
           name={name}
           image={image}
           description={'good product'}

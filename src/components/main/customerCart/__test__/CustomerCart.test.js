@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import CustomerCart from '../CustomerCart'
 import { ArticlesProvider, ArticlesStateContext } from '../../../../context/articles-context'
-import * as reducer from '../../../../reducers/articles-reducer'
 
 describe('Test in ButtonDelete component', () => {
 
@@ -71,27 +70,27 @@ describe('Test in ButtonDelete component', () => {
     )
   })
 
-  test('if the API call is succesfful, you must call the reducer of the context to put the data obtained in the state', async () => {
-    const mockArticlesReducer = jest.spyOn(reducer, 'articlesReducer')
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve([
-          {
-            _id: "18566",
-            name: "Pizaa",
-            price: 110
-          }
-        ])
-      })
-    )
+  // test('if the API call is succesfful, you must call the reducer of the context to put the data obtained in the state', async () => {
+  //   const mockArticlesReducer = jest.spyOn(reducer, 'articlesReducer')
+  //   global.fetch = jest.fn(() =>
+  //     Promise.resolve({
+  //       json: () => Promise.resolve([
+  //         {
+  //           _id: "18566",
+  //           name: "Pizaa",
+  //           price: 110
+  //         }
+  //       ])
+  //     })
+  //   )
 
-    customRender(
-      <CustomerCart />,
-    )
+  //   customRender(
+  //     <CustomerCart />,
+  //   )
 
-    await screen.findByTestId(/cart-component/i)
-    expect(mockArticlesReducer).toHaveBeenCalled()
-  })
+  //   await screen.findByTestId(/cart-component/i)
+  //   expect(mockArticlesReducer).toHaveBeenCalled()
+  // })
 
   it('while the API call is in progress, you must render the Spinner component', async () => {
 

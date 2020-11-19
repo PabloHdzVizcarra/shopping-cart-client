@@ -5,7 +5,7 @@ import Articles from './articles/Articles'
 
 const ListOfArticles = () => {
   const [response, error, loading] = useFetch('/api/v1/all-articles')
-  if (error) console.log(error)
+  console.log(error)
 
   return (
     <div>
