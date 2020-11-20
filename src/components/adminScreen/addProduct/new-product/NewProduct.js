@@ -64,16 +64,23 @@ const NewProduct = ({ values, handleInputChange, handleClickButton, handleSubmit
         />
       </div>
 
-
-      <Select
-        listOptions={
-          ['general', 'limpieza', 'electronica', 'ferreteria', 'perfumeria', 'farmacia', 'jugueteria', 'deportes', 'ropa', 'bebes', 'abarrotes']
-        }
-        nameElement='category'
-        styles='p-2 w-full mt-2 rounded'
-        handleInputChange={handleInputChange}
-        valueElement={category}
-      />
+      <div
+        className="grid p-2"
+      >
+        <Label
+          text='Categoria'
+          elementStyles="text-xl text-green-800"
+        />
+        <Select
+          listOptions={
+            ['---', 'general', 'limpieza', 'electronica', 'ferreteria', 'perfumeria', 'farmacia', 'jugueteria', 'deportes', 'ropa', 'bebes', 'abarrotes']
+          }
+          nameElement='category'
+          styles='p-2 w-full mt-2 rounded'
+          handleInputChange={handleInputChange}
+          valueElement={category}
+        />
+      </div>
 
       <div
         className='flex justify-around'
