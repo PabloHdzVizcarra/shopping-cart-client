@@ -1,6 +1,7 @@
 import { urlValidate } from "../helpers/url-validate/url-validate"
 
-export const formValidate = (name, price, image, category) => {
+export const formValidate = (name, price, image, category, description) => {
+  let errors = []
 
   if (name.length <= 3) {
     return ({
@@ -15,7 +16,6 @@ export const formValidate = (name, price, image, category) => {
       message: 'El articulo tiene que tener un valor valido'
     })
   }
-  
 
   if (!urlValidate(image)) {
     return ({
@@ -24,10 +24,17 @@ export const formValidate = (name, price, image, category) => {
     })
   }
 
-  if (category === '') {
+  if (category === '' || category === '---') {
     return ({
       error: true,
       message: 'Debes seleccionar una categoria'
+    })
+  }
+
+  if (description === '' || description.length === 10) {
+    return ({
+      error: true,
+      message: 'Por favor agrega una descripcion valida, recuerda que debe ser mayor a 10 caracteres'
     })
   }
 
