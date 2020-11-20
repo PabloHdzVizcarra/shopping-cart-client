@@ -56,17 +56,66 @@ describe('Test in AddProduct component', () => {
     expect(setHideAddButton).toHaveBeenCalled()
   })
 
-  test('it should return an alert component for each field that is filled incorrectly in the form', () => {
+  test('should shw an AlertMessage component when the name field is not filled and the Agregar button is pressed', () => {
     renderComponent(false)
     userEvent.click(screen.getByRole(/button/))
-    userEvent.click(screen.getByText(/agregar/i))
-    screen.debug()
-
-    const inputName = screen.getAllByRole(/textbox/)[0].name
-    const inputPrice = screen.getAllByRole(/textbox/)[1].name
-    const inputImage = screen.getAllByRole(/textbox/)[2].name
-    const inputDescription = screen.getAllByRole(/textbox/)[3].name
-    const inputSelect = screen.getByRole(/combobox/).name
+    userEvent.click(screen.getByText(/Agregar/))
+    expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByRole(/alert/).textContent.includes('nombre')).toBeTruthy()
   })
+
+  test('should shw an AlertMessage component when the price field is not filled and the Agregar button is pressed', () => {
+    renderComponent(false)
+    userEvent.click(screen.getByRole(/button/))
+    userEvent.type(screen.getAllByRole(/textbox/)[0], 'Ubuntu')
+    userEvent.click(screen.getByText(/Agregar/))
+
+    expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByRole(/alert/).textContent.includes('precio')).toBeTruthy()
+  })
+
+  test('should shw an AlertMessage component when the image field is not filled and the Agregar button is pressed', () => {
+    renderComponent(false)
+    userEvent.click(screen.getByRole(/button/))
+    userEvent.type(screen.getAllByRole(/textbox/)[0], 'Ubuntu')
+    userEvent.type(screen.getAllByRole(/textbox/)[1], '100')
+    userEvent.click(screen.getByText(/Agregar/))
+
+    expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByRole(/alert/).textContent.includes('imagen')).toBeTruthy()
+  })
+
+  test('should shw an AlertMessage component when the category field is not filled and the Agregar button is pressed', () => {
+    renderComponent(false)
+    userEvent.click(screen.getByRole(/button/))
+    userEvent.type(screen.getAllByRole(/textbox/)[0], 'Ubuntu')
+    userEvent.type(screen.getAllByRole(/textbox/)[1], '100')
+    userEvent.type(screen.getAllByRole(/textbox/)[2], 'http://lorempixel.com/640/480/fashion')
+    userEvent.click(screen.getByText(/Agregar/))
+
+    expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByRole(/alert/).textContent.includes('categoria')).toBeTruthy()
+  })
+
+  test('should shw an AlertMessage component when the description field is not filled and the Agregar button is pressed', () => {
+    renderComponent(false)
+    userEvent.click(screen.getByRole(/button/))
+    userEvent.type(screen.getAllByRole(/textbox/)[0], 'Ubuntu')
+    userEvent.type(screen.getAllByRole(/textbox/)[1], '100')
+    userEvent.type(screen.getAllByRole(/textbox/)[2], 'http://lorempixel.com/640/480/fashion')
+    userEvent.selectOptions(screen.getByRole(/combobox/), 'general')
+    userEvent.click(screen.getByText(/Agregar/))
+
+    expect(screen.getByRole(/alert/)).toBeInTheDocument()
+    expect(screen.getByRole(/alert/).textContent.includes('descripcion')).toBeTruthy()
+  })
+
+  test('should show a success alert when the for is filled successfully', () => {
+    renderComponent(false)
+    userEvent.click(screen.getByRole(/button/))
+    completeForm()
+    screen.debug()
+  })
+
 
 })

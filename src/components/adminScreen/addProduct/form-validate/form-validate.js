@@ -1,8 +1,6 @@
 import { urlValidate } from "../helpers/url-validate/url-validate"
 
 export const formValidate = (name, price, image, category, description) => {
-  let errors = []
-
   if (name.length <= 3) {
     return ({
       error: true,
@@ -13,14 +11,14 @@ export const formValidate = (name, price, image, category, description) => {
   if (parseInt(price) < 0 || isNaN(parseInt(price))) {
     return ({
       error: true,
-      message: 'El articulo tiene que tener un valor valido'
+      message: 'El articulo tiene que tener un precio valido'
     })
   }
 
   if (!urlValidate(image)) {
     return ({
       error: true,
-      message: 'La url que ingresaste no es valida'
+      message: 'La url de la imagen que ingresaste no es valida'
     })
   }
 

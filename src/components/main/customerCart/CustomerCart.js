@@ -1,7 +1,4 @@
 import React from 'react'
-import { useArticles } from '../../../context/articles-context'
-import useFetch from '../../../hooks/use_Fetch/useFetch'
-import Cart from './cart/Cart'
 
 const CustomerCart = () => {
 
